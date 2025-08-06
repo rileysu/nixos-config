@@ -9,7 +9,7 @@
             profile = "desktop";
             systemProfile = "vm";
             timezone = "Sydney/Australia";
-            locale = "en_AU.UTF-8";
+            defaultLocale = "en_AU.UTF-8";
             bootMode = "uefi";
             bootMountPath = "/boot";
         };
@@ -30,6 +30,11 @@
         nixosConfigurations = {
             ${systemSettings.hostname} = lib.nixosSystem {
                 system = systemSettings.system;
+                specialArgs = {
+                    inherit systemSettings;
+                    inherit userSettings;
+                    inherit inputs;
+                };
                 modules = [
                     nix-flatpak.nixosModules.nix-flatpak
                     (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
@@ -38,13 +43,13 @@
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
                         home-manager.users.${userSettings.username} = (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
+                        home-manager.extraSpecialArgs = {
+                            inherit systemSettings;
+                            inherit userSettings;
+                            inherit inputs;
+                        };
                     }
                 ];
-                extraSpecialArgs = {
-                    inherit systemSettings;
-                    inherit userSettings;
-                    inherit inputs;
-                }
             };
         };
     };
