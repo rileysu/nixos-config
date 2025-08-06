@@ -5,10 +5,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  #imports =
+    #[ # Include the results of the hardware scan.
+    #  ./hardware-configuration.nix
+    #];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -70,9 +70,9 @@
   environment.systemPackages = with pkgs; [
   	neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   	curl
-	git
-	openssh
-	doas
+	  git
+	  openssh
+	  doas
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
