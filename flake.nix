@@ -5,9 +5,9 @@
     let
         systemSettings = {
             system = "x86_64-linux";
-            hostname = "riley-nixos-vm";
-            profile = "desktop";
-            systemProfile = "vm";
+            hostname = "riley-laptop";
+            profile = "laptop-linux";
+            systemProfile = "albatross";
             timezone = "Sydney/Australia";
             defaultLocale = "en_AU.UTF-8";
             bootMode = "uefi";
