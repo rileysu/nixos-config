@@ -14,11 +14,17 @@ rec {
   genFlatpakPackages = { pkgs, packageSet }: 
     builtins.map (x: x.packageID) packageSet.flatpak;
 
-  genModulePaths = { prefix, packageSet }: 
+  genModulePaths = { prefix, packageSet, attr }: 
     builtins.map 
-      (x: prefix + x.modulePathSuffix) 
+      (x: prefix + x.${attr}) 
       (builtins.filter 
-        (x: x.modulePathSuffix != null) 
+        (x: x.${attr} != null) 
         (builtins.concatLists (builtins.attrValues packageSet))
       );
+
+  genSystemModulePaths = { prefix, packageSet }: 
+    genModulePaths { inherit prefix; inherit packageSet; attr = "systemModulePathSuffix"; };
+
+  genHomeModulePaths = { prefix, packageSet }: 
+    genModulePaths { inherit prefix; inherit packageSet; attr = "homeModulePathSuffix"; };
 }

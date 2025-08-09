@@ -11,6 +11,12 @@
         modifier = modifier;
         terminal = terminal;
 
+        fonts = {
+          names = [ "Roboto Mono" ];
+          style = "Regular";
+          size = 10.0;
+        };
+
         keybindings = {
           # Launch
           "${modifier}+d" = "exec wmenu-run";
@@ -85,6 +91,14 @@
           "${modifier}+Shift+c" = "reload";
           "${modifier}+Shift+r" = "restart";
           "${modifier}+Shift+e" = "exit";
+
+          # Special
+          "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; #increase sound volume
+          "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; #decrease sound volume
+          "XF86AudioMute" = "exec wpctl set-mut @DEFAULT_AUDIO_SINK@ toggle"; #mute speaker
+          "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; #mute microphone
+          "XF86MonBrightnessUp" = "exec brightnessctl set 5%+"; # increase screen brightness
+          "XF86MonBrightnessDown" = "exec brightnessctl set 5%-"; # decrease screen brightness
         };
       };
   };

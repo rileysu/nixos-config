@@ -6,24 +6,38 @@ in
     # Apps
     {
       packageID = "alacritty";
-      modulePathSuffix = null;
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
     
     # Utilities
     {
       packageID = "doas";
-      modulePathSuffix = null;
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+
+    # Services
+    {
+      packageID = "pipewire";
+      systemModulePathSuffix = "/service/pipewire.nix";
+      homeModulePathSuffix = null;
     }
   ];
 
   font = base.font ++ [
     {
       packageID = "nerd-fonts.monaspace";
-      modulePathSuffix = null;
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
     {
       packageID = "roboto-mono";
-      modulePathSuffix = null;
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
   ];
+
+  # Generic OS base does not have flatpak definitions
+  flatpak = [];
 }

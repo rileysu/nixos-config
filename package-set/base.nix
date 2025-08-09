@@ -3,19 +3,23 @@
     # Utilities
     {
       packageID = "openssh";
-      modulePathSuffix = null;
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
     {
       packageID = "git";
-      modulePathSuffix = null;
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
     {
       packageID = "neovim";
-      modulePathSuffix = null;
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
     {
       packageID = "curl";
-      modulePathSuffix = null;
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
   ];
 

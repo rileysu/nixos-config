@@ -7,9 +7,11 @@ let
   systemPackages = packageSetUtilities.genSystemPackages { inherit pkgs; inherit packageSet; };
   fontPackages = packageSetUtilities.genFontPackages { inherit pkgs; inherit packageSet; };
   flatpakPackages = packageSetUtilities.genFlatpakPackages { inherit pkgs; inherit packageSet; };
+
+  packageSetModulePaths = packageSetUtilities.genSystemModulePaths { prefix = ../../system; inherit packageSet; };
 in 
 {
-  imports = [
+  imports = packageSetModulePaths ++ [
     ../../system/graphics.nix
     ../../system/locale.nix
     ../../system/networking/general.nix

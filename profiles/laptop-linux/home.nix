@@ -4,7 +4,7 @@ let
   packageSet = (import ../../package-set/desktop-linux.nix);
   packageSetUtilities = (import ../../package-set/utilities.nix);
 
-  packageSetModulePaths = packageSetUtilities.genModulePaths { prefix = ../../user; inherit packageSet; };
+  packageSetModulePaths = packageSetUtilities.genHomeModulePaths { prefix = ../../user; inherit packageSet; };
 in
 {
   imports = packageSetModulePaths ++ [];

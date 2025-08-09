@@ -6,21 +6,23 @@ in
     # WM + WM Apps
     {
       packageID = "sway";
-      modulePathSuffix = "/app/sway.nix";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = "/app/sway.nix";
     }
     {
       packageID = "wmenu";
-      modulePathSuffix = null;
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
   ];
 
   font = base.font ++ [];
 
-  # Generic OS base does not have flatpak definitions
-  flatpak = [
+  flatpak = base.flatpak ++ [
     {
       packageID = "org.mozilla.firefox";
-      modulePathSuffix = "/app/firefox/flatpak.nix";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = "/app/firefox/flatpak.nix";
     }
   ];
 }
