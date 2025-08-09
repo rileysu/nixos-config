@@ -1,9 +1,11 @@
 { config, lib, pkgs, userSettings, systemSettings, ... }:
 
-{
+let
+  theme = (import ../../themes/${userSettings.theme}.nix);
+in {
   config = {
     wayland.windowManager.sway.enable = true;
-    wayland.windowManager.sway.config = 
+    wayland.windowManager.sway.config =
       let
         modifier = "Mod4";
         terminal = "alacritty";
@@ -16,6 +18,97 @@
           style = "Regular";
           size = 10.0;
         };
+
+        window = {
+          border = 1;
+          titlebar = false;
+        };
+
+        gaps = {
+        #  inner = 10;
+        #  outer = 10;
+          smartBorders = "on";
+        #  smartGaps = true;
+        };
+
+        colors = {
+          background = theme.black;
+
+          focused = {
+            border = theme.brightYellow;
+            background = theme.background;
+            text = theme.foreground;
+            indicator = theme.brightYellow;
+            childBorder = theme.brightYellow;
+          };
+          focusedInactive = {
+            border = theme.brightBlue;
+            background = theme.background;
+            text = theme.foreground;
+            indicator = theme.brightBlue;
+            childBorder = theme.brightBlue;
+          };
+          unfocused = {
+            border = theme.blue;
+            background = theme.background;
+            text = theme.foreground;
+            indicator = theme.blue;
+            childBorder = theme.blue;
+          };
+          urgent = {
+            border = theme.brightRed;
+            background = theme.background;
+            text = theme.foreground;
+            indicator = theme.brightRed;
+            childBorder = theme.brightRed;
+          };
+          placeholder = {
+            border = theme.blue;
+            background = theme.background;
+            text = theme.foreground;
+            indicator = theme.blue;
+            childBorder = theme.blue;
+          };
+        };
+
+        bars = [
+          {
+            mode = "hide";
+            position = "top";
+            fonts = [ "pango:JetBrainsMono Nerd Font 12" ];
+            colors = {
+              background = theme.background;
+              statusline = theme.blue;
+              separator = theme.black;
+              
+              focusedWorkspace = {
+                border = theme.blue;
+                background = theme.blue;
+                text = theme.background;
+              };
+              activeWorkspace = {
+                border = theme.black;
+                background = theme.background;
+                text = theme.blue;
+              };
+              inactiveWorkspace = {
+                border = theme.black;
+                background = theme.background;
+                text = theme.blue;
+              };
+              urgentWorkspace = {
+                border = theme.brightRed;
+                background = theme.brightRed;
+                text = theme.yellow;
+              };
+              bindingMode = {
+                border = theme.brightRed;
+                background = theme.brightRed;
+                text = theme.yellow;
+              };
+            };
+          }
+        ];
 
         keybindings = {
           # Launch

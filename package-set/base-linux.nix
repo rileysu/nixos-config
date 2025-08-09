@@ -3,16 +3,14 @@ let
 in
 {
   system = base.system ++ [
-    # Apps
-    {
-      packageID = "alacritty";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
-    
     # Utilities
     {
       packageID = "doas";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+    {
+      packageID = "fastfetch";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
@@ -22,6 +20,15 @@ in
       packageID = "pipewire";
       systemModulePathSuffix = "/service/pipewire.nix";
       homeModulePathSuffix = null;
+    }
+  ];
+
+  user = base.user ++ [
+    # Apps
+    {
+      packageID = "alacritty";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = "/app/alacritty.nix";
     }
   ];
 

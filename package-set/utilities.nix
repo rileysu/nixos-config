@@ -8,6 +8,9 @@ rec {
   genSystemPackages = { pkgs, packageSet }: 
     builtins.map (x: genPackage { inherit pkgs; path = x.packageID; }) packageSet.system;
 
+  genUserPackages = { pkgs, packageSet }: 
+    builtins.map (x: genPackage { inherit pkgs; path = x.packageID; }) packageSet.user;
+
   genFontPackages = { pkgs, packageSet }: 
     builtins.map (x: genPackage { inherit pkgs; path = x.packageID; }) packageSet.font;
 

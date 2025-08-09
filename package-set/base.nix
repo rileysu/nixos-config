@@ -1,5 +1,7 @@
 {
-  system = [
+  system = [];
+
+  user = [
     # Utilities
     {
       packageID = "openssh";

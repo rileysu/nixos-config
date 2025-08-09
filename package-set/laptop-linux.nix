@@ -2,7 +2,9 @@ let
   base = (import ./base-linux.nix);
 in
 {
-  system = base.system ++ [
+  system = base.system ++ [];
+
+  user = base.user ++ [
     # WM + WM Apps
     {
       packageID = "sway";

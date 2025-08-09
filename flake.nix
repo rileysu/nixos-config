@@ -18,6 +18,7 @@
             username = "riley";
             name = "Riley";
             email = "riley.d.sutton@gmail.com";
+            theme = "catppuccin_mocha";
         };
 
         lib = inputs.nixpkgs.lib;
