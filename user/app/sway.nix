@@ -11,10 +11,9 @@
         modifier = modifier;
         terminal = terminal;
 
-
-
         keybindings = {
           # Launch
+          "${modifier}+d" = "exec wmenu-run";
           "${modifier}+Return" = "exec ${terminal}";
 
           # Kill

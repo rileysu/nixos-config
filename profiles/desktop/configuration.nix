@@ -19,6 +19,7 @@
     environment.systemPackages = with pkgs; [
       # WM
       sway
+      wmenu
 
       # Terminal/Shell
       alacritty
