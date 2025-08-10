@@ -21,15 +21,21 @@ in
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
+
+    # Apps
+    {
+      packageID = "firefox";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = "/app/firefox/base.nix";
+    }
+    {
+      packageID = "librewolf";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
   ];
 
   font = base.font ++ [];
 
-  flatpak = base.flatpak ++ [
-    {
-      packageID = "org.mozilla.firefox";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = "/app/firefox/flatpak.nix";
-    }
-  ];
+  flatpak = base.flatpak ++ [];
 }

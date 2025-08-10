@@ -16,15 +16,16 @@ in
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
+
+    # Apps
+    {
+      packageID = "firefox";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = "/app/firefox/base.nix";
+    }
   ];
 
   font = base.font ++ [];
 
-  flatpak = base.flatpak ++ [
-    {
-      packageID = "org.mozilla.firefox";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = "/app/firefox/flatpak.nix";
-    }
-  ];
+  flatpak = base.flatpak ++ [];
 }
