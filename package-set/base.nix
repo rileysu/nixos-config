@@ -1,5 +1,11 @@
 {
-  system = [];
+  system = [
+    {
+      packageID = "fish";
+      systemModulePathSuffix = "/shell/fish.nix";
+      homeModulePathSuffix = "/shell/fish.nix";
+    }
+  ];
 
   user = [
     # Utilities
@@ -30,11 +36,6 @@
     }
 
     # Shell
-    {
-      packageID = "fish";
-      systemModulePathSuffix = "/shell/fish.nix";
-      homeModulePathSuffix = "/shell/fish.nix";
-    }
     {
       packageID = "starship";
       systemModulePathSuffix = null;

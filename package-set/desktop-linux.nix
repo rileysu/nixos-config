@@ -5,18 +5,6 @@ in
   system = base.system ++ [];
 
   user = base.user ++ [
-    # WM + WM Apps
-    {
-      packageID = "sway";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = "/app/sway.nix";
-    }
-    {
-      packageID = "wmenu";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
-
     # Apps
     {
       packageID = "brave";

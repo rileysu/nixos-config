@@ -3,6 +3,23 @@ let
 in
 {
   system = base.system ++ [
+    # WM + WM Apps
+    {
+      packageID = "sway";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = "/app/sway.nix";
+    }
+    {
+      packageID = "wmenu";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+    {
+      packageID = "mako";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = "/app/mako.nix";
+    }
+
     # Greeter
     {
       packageID = "greetd";

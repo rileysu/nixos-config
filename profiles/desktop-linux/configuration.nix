@@ -23,8 +23,7 @@ in
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    xdg.portal.wlr.enable = true;
-    xdg.portal.enable = true;
+    xdg.portal.config.common.default = "*";
 
     # Globally installed packages
     environment.systemPackages = systemPackages;

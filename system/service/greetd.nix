@@ -9,7 +9,7 @@ in
       enable = true;
       settings = {
         default_session = {
-          command = "${tuigreetPath} --time --command ${userSettings.defaultWM}";
+          command = "${tuigreetPath} --time --cmd ${userSettings.defaultWM}";
           user = "greeter";
         };
       };

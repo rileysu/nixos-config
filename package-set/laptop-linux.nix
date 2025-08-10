@@ -7,16 +7,6 @@ in
   user = base.user ++ [
     # WM + WM Apps
     {
-      packageID = "sway";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = "/app/sway.nix";
-    }
-    {
-      packageID = "wmenu";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
-    {
       packageID = "brightnessctl";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;

@@ -3,8 +3,17 @@
 let
   theme = (import ../../themes/${userSettings.theme}.nix);
 in {
+  imports = [
+    ../cursor.nix
+    ../wallpaper.nix
+  ];
+
   config = {
     wayland.windowManager.sway.enable = true;
+    wayland.windowManager.sway.package = null;
+    wayland.windowManager.sway.extraConfig = ''
+      output * background ~/.wallpapers/${userSettings.wallpaper} fill
+    '';
     wayland.windowManager.sway.config =
       let
         modifier = "Mod4";
@@ -12,6 +21,13 @@ in {
       in {
         modifier = modifier;
         terminal = terminal;
+
+        startup = [
+          {
+            command = "mako";
+            always = true;
+          }
+        ];
 
         fonts = {
           names = [ "Roboto Mono" ];
@@ -188,7 +204,7 @@ in {
           # Special
           "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; #increase sound volume
           "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; #decrease sound volume
-          "XF86AudioMute" = "exec wpctl set-mut @DEFAULT_AUDIO_SINK@ toggle"; #mute speaker
+          "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; #mute speaker
           "XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; #mute microphone
           "XF86MonBrightnessUp" = "exec brightnessctl set 5%+"; # increase screen brightness
           "XF86MonBrightnessDown" = "exec brightnessctl set 5%-"; # decrease screen brightness

@@ -19,6 +19,7 @@
             name = "Riley";
             email = "riley.d.sutton@gmail.com";
             theme = "catppuccin_mocha";
+            wallpaper = "storm.jpg";
             defaultWM = "sway";
         };
 
