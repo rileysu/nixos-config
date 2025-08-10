@@ -3,6 +3,19 @@ let
 in
 {
   system = base.system ++ [
+    # Greeter
+    {
+      packageID = "greetd";
+      systemModulePathSuffix = "/service/greetd.nix";
+      homeModulePathSuffix = null;
+    }
+    {
+      packageID = "tuigreet";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+    
+
     # Utilities
     {
       packageID = "doas";
