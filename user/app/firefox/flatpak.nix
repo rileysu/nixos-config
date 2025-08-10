@@ -5,7 +5,14 @@
     ./base.nix
   ];
 
-  config = {
-    
-  };
+  config = 
+    let
+      mkOutOfStoreSymlink = config.lib.file.mkOutOfStoreSymlink;
+    in
+    {
+    home.file.".mozilla" = {
+      recursive = true;
+      source = mkOutOfStoreSymlink "${config.home.homeDirectory}/.var/app/org.mozilla.firefox/.mozilla";
+    };
+    };
 }
