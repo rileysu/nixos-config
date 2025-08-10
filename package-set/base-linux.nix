@@ -9,11 +9,6 @@ in
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
-    {
-      packageID = "fastfetch";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
 
     # Services
     {

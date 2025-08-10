@@ -19,9 +19,9 @@ in
 
     # Apps
     {
-      packageID = "firefox";
+      packageID = "brave";
       systemModulePathSuffix = null;
-      homeModulePathSuffix = "/app/firefox/base.nix";
+      homeModulePathSuffix = "/app/brave.nix";
     }
   ];
 

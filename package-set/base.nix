@@ -23,6 +23,23 @@
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
+    {
+      packageID = "fastfetch";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+
+    # Shell
+    {
+      packageID = "fish";
+      systemModulePathSuffix = "/shell/fish.nix";
+      homeModulePathSuffix = "/shell/fish.nix";
+    }
+    {
+      packageID = "starship";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = "/shell/starship.nix";
+    }
   ];
 
   font = [];

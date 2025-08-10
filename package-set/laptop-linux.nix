@@ -24,14 +24,9 @@ in
 
     # Apps
     {
-      packageID = "firefox";
+      packageID = "brave";
       systemModulePathSuffix = null;
-      homeModulePathSuffix = "/app/firefox/base.nix";
-    }
-    {
-      packageID = "librewolf";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
+      homeModulePathSuffix = "/app/brave.nix";
     }
   ];
 
