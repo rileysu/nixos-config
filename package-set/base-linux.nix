@@ -4,21 +4,6 @@ in
 {
   system = base.system ++ [
     # WM + WM Apps
-    {
-      packageID = "sway";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = "/app/sway.nix";
-    }
-    {
-      packageID = "wmenu";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
-    {
-      packageID = "mako";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = "/app/mako.nix";
-    }
 
     # Greeter
     {
@@ -31,7 +16,6 @@ in
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
-    
 
     # Utilities
     {
@@ -48,7 +32,29 @@ in
     }
   ];
 
-  user = base.user ++ [
+  wrapped = base.wrapped ++ [
+    # WM + WM Apps
+    {
+      packageID = "sway";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = "/app/sway.nix";
+    }
+    {
+      packageID = "bemenu";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+    {
+      packageID = "i3status-rust";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+    {
+      packageID = "mako";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+
     # Apps
     {
       packageID = "alacritty";

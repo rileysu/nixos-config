@@ -8,8 +8,8 @@ rec {
   genSystemPackages = { pkgs, packageSet }: 
     builtins.map (x: genPackage { inherit pkgs; path = x.packageID; }) packageSet.system;
 
-  genUserPackages = { pkgs, packageSet }: 
-    builtins.map (x: genPackage { inherit pkgs; path = x.packageID; }) packageSet.user;
+  genWrappedPackages = { pkgs, packageSet }: 
+    builtins.map (x: genPackage { inherit pkgs; path = x.packageID; }) packageSet.wrapped;
 
   genFontPackages = { pkgs, packageSet }: 
     builtins.map (x: genPackage { inherit pkgs; path = x.packageID; }) packageSet.font;
@@ -27,7 +27,4 @@ rec {
 
   genSystemModulePaths = { prefix, packageSet }: 
     genModulePaths { inherit prefix; inherit packageSet; attr = "systemModulePathSuffix"; };
-
-  genHomeModulePaths = { prefix, packageSet }: 
-    genModulePaths { inherit prefix; inherit packageSet; attr = "homeModulePathSuffix"; };
 }

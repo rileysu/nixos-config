@@ -2,9 +2,7 @@ let
   base = (import ./base-linux.nix);
 in
 {
-  system = base.system ++ [];
-
-  user = base.user ++ [
+  system = base.system ++ [
     # WM + WM Apps
     {
       packageID = "brightnessctl";
@@ -19,6 +17,8 @@ in
       homeModulePathSuffix = "/app/brave.nix";
     }
   ];
+
+  wrapped = base.wrapped ++ [];
 
   font = base.font ++ [];
 
