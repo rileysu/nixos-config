@@ -1,13 +1,5 @@
 {
   system = [
-    {
-      packageID = "fish";
-      systemModulePathSuffix = "/shell/fish.nix";
-      homeModulePathSuffix = "/shell/fish.nix";
-    }
-  ];
-
-  user = [
     # Utilities
     {
       packageID = "openssh";
@@ -40,6 +32,15 @@
       packageID = "starship";
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/shell/starship.nix";
+    }
+  ];
+
+  wrapped = [
+    # Utilities
+    {
+      packageID = "nushell";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
   ];
 

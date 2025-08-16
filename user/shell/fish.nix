@@ -4,7 +4,7 @@
   config = {
     programs.fish = {
       enable = true;
-
+      package = null;
     };
   };
 }
