@@ -2,8 +2,9 @@
   let
     themeUtilities = (import ../../themes/utilities.nix);
     theme = themeUtilities.getTheme { inherit userSettings; };
+    themeNamed = themeUtilities.toNamed { inherit theme; };
 
-    conf = pkgs.writeText "config" ((import ./conf.nix) { inherit userSettings systemSettings theme; });
+    conf = pkgs.writeText "config" ((import ./conf.nix) { inherit userSettings systemSettings themeNamed; });
   in {
     config = {
       wrappers.swaylock = {

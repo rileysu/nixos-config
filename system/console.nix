@@ -2,26 +2,27 @@
 let
   themeUtilities = (import ../themes/utilities.nix);
   theme = themeUtilities.getTheme { inherit userSettings; };
+  themeANSI = themeUtilities.toANSI { inherit theme; };
 in
 {
   config = {
     console.colors = [
-      theme.black
-      theme.red
-      theme.green
-      theme.yellow
-      theme.blue
-      theme.magenta
-      theme.cyan
-      theme.white
-      theme.brightBlack
-      theme.brightRed
-      theme.brightGreen
-      theme.brightYellow
-      theme.brightBlue
-      theme.brightMagenta
-      theme.brightCyan
-      theme.brightWhite
+      themeANSI.black
+      themeANSI.red
+      themeANSI.green
+      themeANSI.yellow
+      themeANSI.blue
+      themeANSI.magenta
+      themeANSI.cyan
+      themeANSI.white
+      themeANSI.brightBlack
+      themeANSI.brightRed
+      themeANSI.brightGreen
+      themeANSI.brightYellow
+      themeANSI.brightBlue
+      themeANSI.brightMagenta
+      themeANSI.brightCyan
+      themeANSI.brightWhite
     ];
   };
 }

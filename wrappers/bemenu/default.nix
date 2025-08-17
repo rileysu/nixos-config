@@ -2,6 +2,7 @@
   let
     themeUtilities = (import ../../themes/utilities.nix);
     theme = themeUtilities.getTheme { inherit userSettings; };
+    themeNamed = themeUtilities.toNamed { inherit theme; };
   in {
     config = {
       wrappers.bemenu = {
@@ -19,37 +20,37 @@
             "24"
 
             "--tb"
-            "#${theme.foreground}"
+            "#${themeNamed.foreground}"
             "--tf"
-            "#${theme.background}"
+            "#${themeNamed.background}"
 
             "--fb"
-            "#${theme.background}"
+            "#${themeNamed.background}"
             "--ff"
-            "#${theme.foreground}"
+            "#${themeNamed.foreground}"
 
             "--cb"
-            "#${theme.foreground}"
+            "#${themeNamed.foreground}"
             "--cf"
-            "#${theme.background}"
+            "#${themeNamed.background}"
 
             "--nb"
-            "#${theme.background}"
+            "#${themeNamed.background}"
             "--nf"
-            "#${theme.foreground}"
+            "#${themeNamed.foreground}"
             "--ab"
-            "#${theme.background}"
+            "#${themeNamed.background}"
             "--af"
-            "#${theme.foreground}"
+            "#${themeNamed.foreground}"
 
             "--hb"
-            "#${theme.foreground}"
+            "#${themeNamed.foreground}"
             "--hf"
-            "#${theme.background}"
+            "#${themeNamed.background}"
             "--sb"
-            "#${theme.foreground}"
+            "#${themeNamed.foreground}"
             "--sf"
-            "#${theme.background}"
+            "#${themeNamed.background}"
           ];
         };
       };

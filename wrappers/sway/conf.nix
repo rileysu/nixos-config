@@ -1,4 +1,4 @@
-{ userSettings, systemSettings, theme }:
+{ userSettings, systemSettings, themeNamed }:
 ''
 ## General ##
 
@@ -27,11 +27,11 @@ gaps inner 8
 ## Theme ##
 
 # Colors
-client.focused          #${theme.brightYellow} #${theme.background} #${theme.foreground} #${theme.brightYellow} #${theme.brightYellow}
-client.focused_inactive #${theme.foreground} #${theme.background} #${theme.foreground} #${theme.foreground} #${theme.foreground}
-client.unfocused        #${theme.foreground} #${theme.background} #${theme.foreground} #${theme.foreground} #${theme.foreground}
-client.urgent           #${theme.brightRed} #${theme.background} #${theme.foreground} #${theme.brightRed} #${theme.brightRed}
-client.placeholder      #${theme.blue} #${theme.background} #${theme.foreground} #${theme.blue} #${theme.blue}
+client.focused          #${themeNamed.yellow} #${themeNamed.background} #${themeNamed.foreground} #${themeNamed.yellow} #${themeNamed.yellow}
+client.focused_inactive #${themeNamed.foreground} #${themeNamed.background} #${themeNamed.foreground} #${themeNamed.foreground} #${themeNamed.foreground}
+client.unfocused        #${themeNamed.foreground} #${themeNamed.background} #${themeNamed.foreground} #${themeNamed.foreground} #${themeNamed.foreground}
+client.urgent           #${themeNamed.red} #${themeNamed.background} #${themeNamed.foreground} #${themeNamed.red} #${themeNamed.red}
+client.placeholder      #${themeNamed.blue} #${themeNamed.background} #${themeNamed.foreground} #${themeNamed.blue} #${themeNamed.blue}
 
 # Bar
 bar {
@@ -43,15 +43,15 @@ bar {
     status_command i3status-rs
 
     colors {
-        background #${theme.background}
-        statusline #${theme.foreground}
-        separator #${theme.black}
+        background #${themeNamed.background}
+        statusline #${themeNamed.foreground}
+        separator #${themeNamed.surface1}
         
-        focused_workspace   #${theme.foreground} #${theme.foreground} #${theme.background}
-        active_workspace    #${theme.black} #${theme.background} #${theme.foreground}
-        inactive_workspace  #${theme.black} #${theme.background} #${theme.foreground}
-        urgent_workspace    #${theme.brightRed} #${theme.brightRed} #${theme.background}
-        binding_mode        #${theme.brightGreen} #${theme.brightGreen} #${theme.background}
+        focused_workspace   #${themeNamed.foreground} #${themeNamed.foreground} #${themeNamed.background}
+        active_workspace    #${themeNamed.surface1} #${themeNamed.background} #${themeNamed.foreground}
+        inactive_workspace  #${themeNamed.surface1} #${themeNamed.background} #${themeNamed.foreground}
+        urgent_workspace    #${themeNamed.red} #${themeNamed.red} #${themeNamed.background}
+        binding_mode        #${themeNamed.green} #${themeNamed.green} #${themeNamed.background}
     }
 }
 

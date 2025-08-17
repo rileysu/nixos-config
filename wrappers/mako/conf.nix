@@ -1,27 +1,27 @@
-{ userSettings, systemSettings, theme }:
+{ userSettings, systemSettings, themeNamed }:
 ''
 max-visible=8
 sort=-time
 layer=top
 anchor=top-right
 font=Roboto Mono Regular 10
-background-color=#${theme.background}
-text-color=#${theme.foreground}
+background-color=#${themeNamed.background}
+text-color=#${themeNamed.foreground}
 width=256
 height=128
 margin=16
 padding=8
 border-size=1
 border-radius=0
-progress-color=over #${theme.black}
+progress-color=over #${themeNamed.surface1}
 
 
 [urgency=low]
-border-color=#${theme.brightGreen}
+border-color=#${themeNamed.green}
 
 [urgency=normal]
-border-color=#${theme.brightYellow}
+border-color=#${themeNamed.yellow}
 
 [urgency=critical]
-border-color=#${theme.brightRed}
+border-color=#${themeNamed.red}
 ''

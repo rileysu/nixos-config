@@ -12,28 +12,28 @@ bold_italic.style = "Bold Italic"
 size = 10.0
 
 [colors.primary]
-background = "#${theme.background}"
-foreground = "#${theme.foreground}"
+background = "#${theme.base00}"
+foreground = "#${theme.base05}"
 
 [colors.normal]
-black = "#${theme.black}"
-red = "#${theme.red}"
-green = "#${theme.green}"
-yellow = "#${theme.yellow}"
-blue = "#${theme.blue}"
-magenta = "#${theme.magenta}"
-cyan = "#${theme.cyan}"
-white = "#${theme.white}"
+black = "#${theme.base00}"
+red = "#${theme.base08}"
+green = "#${theme.base0B}"
+yellow = "#${theme.base0A}"
+blue = "#${theme.base0D}"
+magenta = "#${theme.base0E}"
+cyan = "#${theme.base0C}"
+white = "#${theme.base05}"
 
 [colors.bright]
-black = "#${theme.brightBlack}"
-red = "#${theme.brightRed}"
-green = "#${theme.brightGreen}"
-yellow = "#${theme.brightYellow}"
-blue = "#${theme.brightBlue}"
-magenta = "#${theme.brightMagenta}"
-cyan = "#${theme.brightCyan}"
-white = "#${theme.brightWhite}"
+black = "#${theme.base01}"
+red = "#${theme.base08}"
+green = "#${theme.base0B}"
+yellow = "#${theme.base0A}"
+blue = "#${theme.base0D}"
+magenta = "#${theme.base0F}"
+cyan = "#${theme.base0C}"
+white = "#${theme.base05}"
 
 [window]
 opacity = 0.9
