@@ -4,6 +4,21 @@ in
 {
   system = base.system ++ [
     # WM + WM Apps
+    {
+      packageID = "slurp";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+    {
+      packageID = "grim";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+    {
+      packageID = "wl-clipboard";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
 
     # Greeter
     {
@@ -52,6 +67,11 @@ in
     {
       packageID = "mako";
       systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+    {
+      packageID = "swaylock";
+      systemModulePathSuffix = "/swaylock.nix";
       homeModulePathSuffix = null;
     }
 

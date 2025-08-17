@@ -51,7 +51,7 @@ bar {
         active_workspace    #${theme.black} #${theme.background} #${theme.foreground}
         inactive_workspace  #${theme.black} #${theme.background} #${theme.foreground}
         urgent_workspace    #${theme.brightRed} #${theme.brightRed} #${theme.background}
-        binding_mode        #${theme.brightRed} #${theme.brightRed} #${theme.background}
+        binding_mode        #${theme.brightGreen} #${theme.brightGreen} #${theme.background}
     }
 }
 
@@ -126,7 +126,6 @@ bindsym $mod+Shift+l move right
 # Control
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exit
 
 # Special
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
@@ -135,4 +134,37 @@ bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+## Modes ##
+
+# Exit
+set $lock_command swaylock -f -e
+set $mode_exit System (l) lock, (e) exit, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_exit" {
+    bindsym l exec $lock_command, mode "default"
+    bindsym e exec swaymsg exit, mode "default"
+    bindsym s exec $lock_command && systemctl suspend suspend, mode "default"
+    bindsym h exec $lock_command && systemctl hibernate, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym Shift+s exec systemctl shutdown, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "$mode_exit"
+
+# Screenshot
+set $mode_screenshot Screenshot (e) entire, (s) section, (Shift+e) entire save, (Shift+s) section save
+mode "$mode_screenshot" {
+    bindsym e exec grim - | wl-copy -t image/png, mode "default"
+    bindsym s exec grim -g "$(slurp)" - | wl-copy -t image/png, mode "default"
+    bindsym Shift+e exec grim "$HOME/Screenshots/$(date +'%Y-%m-%d-%H%M%S_capture.png')", mode "default"
+    bindsym Shift+s exec grim -g "$(slurp)" "$HOME/Screenshots/$(date +'%Y-%m-%d-%H%M%S_capture.png')", mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym Print mode "$mode_screenshot"
 ''

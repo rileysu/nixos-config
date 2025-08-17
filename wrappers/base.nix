@@ -10,5 +10,6 @@
     ./mako/default.nix
     ./nushell/default.nix
     ./sway/default.nix
+    ./swaylock/default.nix
   ];
 }

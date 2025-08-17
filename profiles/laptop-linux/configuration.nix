@@ -16,6 +16,7 @@ let
 in 
 {
   imports = packageSetModulePaths ++ [
+    ../../system/console.nix
     ../../system/graphics.nix
     ../../system/locale.nix
     ../../system/networking/general.nix
