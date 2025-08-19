@@ -1,21 +1,32 @@
 { config, lib, pkgs, userSettings, systemSettings, wrapper-manager, ... }:
 
 let
-  packageSet = (import ../../package-set/laptop-linux.nix);
-  packageSetUtilities = (import ../../package-set/utilities.nix);
+  packageModuleUtilities = (import ../../package-set/utilities.nix);
   wrapperUtilities = (import ../../wrappers/utilities.nix);
 
   wrapperPkgs = wrapperUtilities.genWrapperPkgs { inherit wrapper-manager; inherit pkgs; inherit userSettings; inherit systemSettings; };
 
-  systemPackages = packageSetUtilities.genSystemPackages { inherit pkgs; inherit packageSet; };
-  wrappedPackages = packageSetUtilities.genWrappedPackages { pkgs = wrapperPkgs; inherit packageSet; };
-  fontPackages = packageSetUtilities.genFontPackages { inherit pkgs; inherit packageSet; };
-  flatpakPackages = packageSetUtilities.genFlatpakPackages { inherit pkgs; inherit packageSet; };
+  packageModuleIDs = [
+    "greeters/tuigreet"
+    "desktop-envs/sway"
+    "fonts"
+    "general-cli-apps"
+    "shells/nushell"
+    "terminals/alacritty"
+    "browsers/brave"
+  ];
 
-  packageSetModulePaths = packageSetUtilities.genSystemModulePaths { prefix = ../../system; inherit packageSet; };
+  packageModule = packageModuleUtilities.combinePackageModules { packageModules = packageModuleUtilities.getPackageModules { inherit packageModuleIDs; }; };
+
+  systemPackages = packageModuleUtilities.genSystemPackages { inherit pkgs; inherit packageModule; };
+  wrappedPackages = packageModuleUtilities.genWrappedPackages { pkgs = wrapperPkgs; inherit packageModule; };
+  fontPackages = packageModuleUtilities.genFontPackages { inherit pkgs; inherit packageModule; };
+  flatpakPackages = packageModuleUtilities.genFlatpakPackages { inherit pkgs; inherit packageModule; };
+
+  packageModuleModulePaths = packageModuleUtilities.genSystemModulePaths { prefix = ../../system; inherit packageModule; };
 in 
 {
-  imports = packageSetModulePaths ++ [
+  imports = packageModuleModulePaths ++ [
     ../../system/console.nix
     ../../system/graphics.nix
     ../../system/locale.nix

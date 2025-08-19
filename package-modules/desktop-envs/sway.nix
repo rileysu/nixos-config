@@ -1,6 +1,3 @@
-let
-    base = (import ./base.nix);
-in
 {
   system = base.system ++ [
     # WM + WM Apps
@@ -17,32 +14,6 @@ in
     {
       packageID = "wl-clipboard";
       systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
-
-    # Greeter
-    {
-      packageID = "greetd";
-      systemModulePathSuffix = "/service/greetd.nix";
-      homeModulePathSuffix = null;
-    }
-    {
-      packageID = "tuigreet";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
-
-    # Utilities
-    {
-      packageID = "doas";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
-
-    # Services
-    {
-      packageID = "pipewire";
-      systemModulePathSuffix = "/service/pipewire.nix";
       homeModulePathSuffix = null;
     }
   ];
@@ -73,13 +44,6 @@ in
       packageID = "swaylock";
       systemModulePathSuffix = "/swaylock.nix";
       homeModulePathSuffix = null;
-    }
-
-    # Apps
-    {
-      packageID = "alacritty";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = "/app/alacritty.nix";
     }
   ];
 

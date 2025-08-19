@@ -26,23 +26,9 @@
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
-
-    # Shell
-    {
-      packageID = "starship";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = "/shell/starship.nix";
-    }
   ];
 
-  wrapped = [
-    # Utilities
-    {
-      packageID = "nushell";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
-  ];
+  wrapped = [];
 
   font = [];
 }
