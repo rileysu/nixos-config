@@ -10,10 +10,6 @@
       systemModulePathSuffix = null;
     }
     {
-      packageID = "neovim";
-      systemModulePathSuffix = null;
-    }
-    {
       packageID = "curl";
       systemModulePathSuffix = null;
     }

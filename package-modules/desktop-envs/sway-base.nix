@@ -1,3 +1,6 @@
+let
+  fontBase = import ../fonts.nix;
+in
 {
   system = [
     # WM + WM Apps
@@ -47,7 +50,7 @@
     }
   ];
 
-  font = [];
+  font = fontBase.font ++ [];
 
   flatpak = [];
 }

@@ -1,8 +1,7 @@
 {
   system = [
-    # WM + WM Apps
     {
-      packageID = "brightnessctl";
+      packageID = "neovim";
       systemModulePathSuffix = null;
     }
   ];

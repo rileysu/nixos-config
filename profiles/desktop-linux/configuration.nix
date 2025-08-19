@@ -6,15 +6,22 @@ let
 
   wrapperPkgs = wrapperUtilities.genWrapperPkgs { inherit wrapper-manager; inherit pkgs; inherit userSettings; inherit systemSettings; };
 
+  defaultShellPackageModuleID = if systemSettings.defaultShell != null then [ "shells/${systemSettings.defaultShell}" ] else [];
+  defaultEditorPackageModuleID = if systemSettings.defaultEditor != null then [ "editors/${systemSettings.defaultEditor}" ] else [];
+  defaultTerminalPackageModuleID = if systemSettings.defaultTerminal != null then [ "terminals/${systemSettings.defaultTerminal}" ] else [];
   packageModuleIDs = [
     "greeters/tuigreet"
-    "desktop-envs/sway"
-    "fonts"
+
+    "desktop-envs/sway-laptop"
+    "services/pipewire"
+
     "general-cli-apps"
-    "shells/nushell"
-    "terminals/alacritty"
+
     "browsers/brave"
-  ];
+  ] 
+  ++ defaultShellPackageModuleID
+  ++ defaultEditorPackageModuleID
+  ++ defaultTerminalPackageModuleID;
 
   packageModule = packageModuleUtilities.combinePackageModules { packageModules = packageModuleUtilities.getPackageModules { inherit packageModuleIDs; }; };
 

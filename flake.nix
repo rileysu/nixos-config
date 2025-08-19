@@ -10,8 +10,13 @@
             systemProfile = "albatross";
             timezone = "Sydney/Australia";
             defaultLocale = "en_AU.UTF-8";
-            bootMode = "uefi";
-            bootMountPath = "/boot";
+
+            desktopEnvProfile = "sway-laptop"; # Can be null
+
+            defaultShell = "nushell"; # Can be null
+            defaultEditor = "neovim"; # Can be null
+            defaultEditorCommand = "nvim"; # Can be null
+            defaultTerminal = "alacritty"; # Can be null
         };
 
         userSettings = {
@@ -20,8 +25,6 @@
             email = "riley.d.sutton@gmail.com";
             theme = "catppuccin_mocha";
             wallpaper = "storm.jpg";
-            defaultWM = "sway";
-            defaultEditor = "nvim";
         };
 
         lib = inputs.nixpkgs.lib;

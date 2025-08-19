@@ -3,11 +3,11 @@
     # Greeter
     {
       packageID = "greetd";
-      systemModulePathSuffix = "/service/greetd.nix";
+      systemModulePathSuffix = null;
     }
     {
       packageID = "tuigreet";
-      systemModulePathSuffix = null;
+      systemModulePathSuffix = "/greeters/tuigreet.nix";
     }
   ];
 
