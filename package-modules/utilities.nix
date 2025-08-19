@@ -8,7 +8,7 @@ rec {
   # Need to remove duplicates between wrapped and system (maybe wrapped can have higher priority than system)
   # Need to remove duplicate module imports
   combinePackageModules = { packageModules }:
-    builtins.foldl' (xs: x: { system = x.system // xs.system; wrapped = x.wrapped // xs.wrapped; font = x.fonts // xs.fonts; flatpak = x.flatpak // xs.flatpak });
+    builtins.foldl' (xs: x: { system = xs.system ++ x.system; wrapped = xs.wrapped ++ x.wrapped; font = xs.font ++ x.font; flatpak = xs.flatpak ++ x.flatpak; }) { system = []; wrapped = []; font = []; flatpak = []; } packageModules;
 
   genPackage = { pkgs, path }:
     let

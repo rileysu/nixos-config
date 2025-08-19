@@ -1,5 +1,5 @@
 {
-  system = base.system ++ [
+  system = [
     # WM + WM Apps
     {
       packageID = "slurp";
@@ -18,7 +18,7 @@
     }
   ];
 
-  wrapped = base.wrapped ++ [
+  wrapped = [
     # WM + WM Apps
     {
       packageID = "sway";
@@ -47,19 +47,7 @@
     }
   ];
 
-  font = base.font ++ [
-    {
-      packageID = "nerd-fonts.monaspace";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
-    {
-      packageID = "roboto-mono";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
-    }
-  ];
+  font = [];
 
-  # Generic OS base does not have flatpak definitions
   flatpak = [];
 }

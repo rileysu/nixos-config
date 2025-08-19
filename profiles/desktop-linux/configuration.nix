@@ -1,7 +1,7 @@
 { config, lib, pkgs, userSettings, systemSettings, wrapper-manager, ... }:
 
 let
-  packageModuleUtilities = (import ../../package-set/utilities.nix);
+  packageModuleUtilities = (import ../../package-modules/utilities.nix);
   wrapperUtilities = (import ../../wrappers/utilities.nix);
 
   wrapperPkgs = wrapperUtilities.genWrapperPkgs { inherit wrapper-manager; inherit pkgs; inherit userSettings; inherit systemSettings; };

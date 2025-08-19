@@ -11,6 +11,7 @@
   boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelParams = [ "i195.enable_psr=0" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
