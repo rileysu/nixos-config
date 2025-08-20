@@ -3,7 +3,10 @@
     themeUtilities = (import ../../themes/utilities.nix);
     theme = themeUtilities.getTheme { inherit userSettings; };
 
-    conf = pkgs.writeText "config.toml" ((import ./conf.nix) { inherit userSettings systemSettings theme; });
+    desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
+    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
+
+    conf = pkgs.writeText "config.toml" ((import ./conf.nix) { inherit userSettings systemSettings theme desktopEnvConfig; });
   in {
     config = {
       wrappers.i3status-rust = {

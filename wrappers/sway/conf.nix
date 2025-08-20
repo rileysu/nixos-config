@@ -1,9 +1,35 @@
-{ userSettings, systemSettings, themeNamed }:
+{ userSettings, systemSettings, themeNamed, desktopEnvConfig }:
+let
+    volumeModule =
+        if desktopEnvConfig.sway.volume.enabled
+        then
+            ''
+                # Special Volume
+                bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+                bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+                bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+                bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle 
+            ''
+        else "";
+
+    brightnessModule =
+        if desktopEnvConfig.sway.brightness.enabled
+        then
+            ''
+                # Special Brightness
+                bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+                bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+            ''
+        else "";
+in
 ''
 ## General ##
 
 # Set wallpaper
 output * background ~/.wallpapers/${userSettings.wallpaper} fill
+
+# Set Cursor
+seat seat0 xcursor_theme Bibata-Modern-Ice 22
 
 # Variables
 set $mod Mod4
@@ -127,13 +153,9 @@ bindsym $mod+Shift+l move right
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-# Special
-bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+${volumeModule}
+
+${brightnessModule}
 
 ## Modes ##
 

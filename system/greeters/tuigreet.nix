@@ -4,8 +4,8 @@ let
   tuigreetPath = "${pkgs.tuigreet}/bin/tuigreet";
 
   desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
-  desktopEnvConfig = if systemSettings.desktopEnvProfile != null then (desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; }) else null;
-  launchSuffix = if desktopEnvConfig != null then "--cmd ${desktopEnvConfig.launchCommand}" else "";
+  desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
+  launchSuffix = if desktopEnvConfig.launchCommand != null then "--cmd ${desktopEnvConfig.launchCommand}" else "";
 in
 {
   config = {

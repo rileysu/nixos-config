@@ -1,6 +1,10 @@
 { config, lib, pkgs, userSettings, systemSettings, ... }: 
   let
-    defaultEditorLine = if systemSettings.defaultEditor != null then "$env.config.buffer_editor = ${systemSettings.defaultEditorCommand}" else "";
+    defaultEditorLine = 
+      if systemSettings.defaultEditorCommand != null 
+        then "$env.config.buffer_editor = ${systemSettings.defaultEditorCommand}" 
+        else "";
+        
     conf = pkgs.writeText "config.nu" 
     ''
       ${defaultEditorLine}

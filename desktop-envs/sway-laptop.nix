@@ -5,6 +5,7 @@
     launchCommand = "sway";
   
     sway = {
+      volume.enabled = true;
       brightness.enabled = true;
     };
 

@@ -4,7 +4,10 @@
     theme = themeUtilities.getTheme { inherit userSettings; };
     themeNamed = themeUtilities.toNamed { inherit theme; };
 
-    conf = pkgs.writeText "config" ((import ./conf.nix) { inherit userSettings systemSettings themeNamed; });
+    desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
+    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
+
+    conf = pkgs.writeText "config" ((import ./conf.nix) { inherit userSettings systemSettings themeNamed desktopEnvConfig; });
   in {
     config = {
       wrappers.sway = {
