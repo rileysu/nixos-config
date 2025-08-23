@@ -2,30 +2,37 @@
 { config, lib, pkgs, userSettings, systemSettings, ... }:
 let
   modules = [
-    
-  ]
+
+  ];
 in
 {
   config = {
     programs.neovim = {
-      plugins = with pkgs.vimPlugins [
-        lazy-nvim
-      ];
+      enable = true;
 
+      configure = {
+        packages.myVimPackage = with pkgs.vimPlugins; {
+          start = [
+            lazy-nvim
+          ];
 
-      # https://github.com/breuerfelix/feovim/blob/main/flake.nix
-      extraLuaConfig =
-        ''
-          require("lazy").setup({
-            rocks = { enabled = False },
-            pkg = { enable = False },
-            install = { missing = False },
-            change_detection = { enabled = false },
-            spec = {
-              -- TODO  
-            },
-          })
-        ''
+          opt = [ ];
+        };
+
+        # https://github.com/breuerfelix/feovim/blob/main/flake.nix
+        customLuaRC =
+          ''
+            require("lazy").setup({
+              rocks = { enabled = False },
+              pkg = { enable = False },
+              install = { missing = False },
+              change_detection = { enabled = false },
+              spec = {
+                -- TODO  
+              },
+            })
+          '';
+      };
     };
   };
 }
