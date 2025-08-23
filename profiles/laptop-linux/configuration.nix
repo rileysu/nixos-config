@@ -14,6 +14,7 @@ let
 
     "desktop-envs/sway-laptop"
     "services/pipewire"
+    "services/bluez"
 
     "general-cli-apps"
 
