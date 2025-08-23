@@ -19,6 +19,8 @@
             "-H"
             "24"
 
+            "-i" #Ignore Case
+
             "--tb"
             "#${themeNamed.foreground}"
             "--tf"

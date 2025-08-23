@@ -18,6 +18,7 @@ let
     "general-cli-apps"
 
     "browsers/brave"
+    "gaming/steam"
   ] 
   ++ defaultShellPackageModuleID
   ++ defaultEditorPackageModuleID

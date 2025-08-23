@@ -17,6 +17,10 @@
       packageID = "fastfetch";
       systemModulePathSuffix = null;
     }
+    {
+      packageID = "caligula";
+      systemModulePathSuffix = null;
+    }
   ];
 
   wrapped = [];
