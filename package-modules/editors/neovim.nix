@@ -2,7 +2,7 @@
   system = [
     {
       packageID = "neovim";
-      systemModulePathSuffix = null;
+      systemModulePathSuffix = "neovim/default.nix";
     }
   ];
 
