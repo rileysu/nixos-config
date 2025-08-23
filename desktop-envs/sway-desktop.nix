@@ -6,6 +6,13 @@
 
     sway = {
       brightness.enabled = false;
+
+      cursor = {
+        enabled = true;
+        
+        themeName = "Bibata-Modern-Ice";
+        size = 22;
+      };
     };
 
     bar = {

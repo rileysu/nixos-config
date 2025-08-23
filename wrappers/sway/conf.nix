@@ -1,5 +1,7 @@
 { userSettings, systemSettings, themeNamed, desktopEnvConfig }:
 let
+    wallpaperPath = ../../wallpapers/${userSettings.wallpaper};
+
     volumeModule =
         if desktopEnvConfig.sway.volume.enabled
         then
@@ -21,15 +23,23 @@ let
                 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
             ''
         else "";
+    
+    cursorModule = 
+        if desktopEnvConfig.sway.cursor.enabled
+        then
+            ''
+                #Set Cursor
+                seat seat0 xcursor_theme ${desktopEnvConfig.sway.cursor.themeName} ${builtins.toString desktopEnvConfig.sway.cursor.size}
+            ''
+        else "";
 in
 ''
 ## General ##
 
 # Set wallpaper
-output * background ~/.wallpapers/${userSettings.wallpaper} fill
+output * background ${wallpaperPath} fill
 
-# Set Cursor
-seat seat0 xcursor_theme Bibata-Modern-Ice 22
+${cursorModule}
 
 # Variables
 set $mod Mod4

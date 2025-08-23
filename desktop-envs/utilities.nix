@@ -8,6 +8,13 @@ rec {
       sway = {
         volume.enabled = false;
         brightness.enabled = false;
+
+        cursor = {
+          enabled = false;
+
+          themeName = null;
+          size = null;
+        };
       };
 
       bar = {
@@ -18,9 +25,17 @@ rec {
     };
   };
 
+  importProfile = { profile }:
+    baseEnv //
+    (if profile != null then
+      (import ./${profile}.nix)
+    else
+      {}
+    );
+
   getDesktopEnvName = { profile }:
-    (if profile != null then (import ./${profile}.nix).name else {});
+    (importProfile { inherit profile; }).name;
 
   getDesktopEnvConfig = { profile }:
-    baseEnv.config // (if profile != null then (import ./${profile}.nix).config else {});
+    (importProfile { inherit profile; }).config;
 }
