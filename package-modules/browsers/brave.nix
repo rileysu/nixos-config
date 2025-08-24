@@ -1,15 +1,15 @@
 {
-  system = [];
+  system = [
+    # Apps
+    {
+      packageID = "brave";
+      systemModulePathSuffix = null;
+    }
+  ];
 
   wrapped = [];
 
   font = [];
 
-  flatpak = [
-    # Apps
-    {
-      packageID = "com.brave.Browser";
-      systemModulePathSuffix = null;
-    }
-  ];
+  flatpak = [];
 }

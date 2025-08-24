@@ -1,7 +1,7 @@
 {
   system = [
     {
-      packageID = "steam-devices-udev-rules";
+      packageID = "steam";
       systemModulePathSuffix = null;
     }
   ];
@@ -10,10 +10,5 @@
 
   font = [];
 
-  flatpak = [
-    {
-      packageID = "com.valvesoftware.Steam";
-      systemModulePathSuffix = null;
-    }
-  ];
+  flatpak = [];
 }
