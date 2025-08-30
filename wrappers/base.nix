@@ -8,6 +8,7 @@
     ./hyprpaper/default.nix
     ./i3status-rust/default.nix
     ./mako/default.nix
+    ./neovim/default.nix
     ./nushell/default.nix
     ./sway/default.nix
     ./swaylock/default.nix

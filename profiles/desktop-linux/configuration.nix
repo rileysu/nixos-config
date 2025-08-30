@@ -19,6 +19,7 @@ let
 
     "browsers/brave"
     "gaming/steam"
+    "gaming/prismlauncher"
   ] 
   ++ defaultShellPackageModuleID
   ++ defaultEditorPackageModuleID
@@ -44,6 +45,8 @@ in
   ];
 
   config = {
+    nixpkgs.config.allowUnfree = true;
+
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 

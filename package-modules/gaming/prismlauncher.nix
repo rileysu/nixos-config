@@ -1,12 +1,12 @@
 {
-  system = [];
-
-  wrapped = [
+  system = [
     {
-      packageID = "neovim";
+      packageID = "prismlauncher";
       systemModulePathSuffix = null;
     }
   ];
+
+  wrapped = [];
 
   font = [];
 
