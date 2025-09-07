@@ -3,6 +3,7 @@
     {
       packageID = "pipewire";
       systemModulePathSuffix = "/service/pipewire.nix";
+      homeModulePathSuffix = null;
     }
   ];
 

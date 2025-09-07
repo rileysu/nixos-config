@@ -6,6 +6,7 @@ in {
     {
       packageID = "brightnessctl";
       systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
   ];
 

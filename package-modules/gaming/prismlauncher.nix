@@ -3,6 +3,7 @@
     {
       packageID = "prismlauncher";
       systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
   ];
 

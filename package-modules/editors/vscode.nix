@@ -3,6 +3,7 @@
     {
       packageID = "neovim";
       systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
   ];
 

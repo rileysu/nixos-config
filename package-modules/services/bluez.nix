@@ -3,6 +3,7 @@
     {
       packageID = "bluez";
       systemModulePathSuffix = "/service/bluez.nix";
+      homeModulePathSuffix = null;
     }
   ];
 

@@ -4,6 +4,7 @@
     {
       packageID = "brave";
       systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
   ];
 

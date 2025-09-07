@@ -1,21 +1,23 @@
 { config, lib, pkgs, userSettings, systemSettings, ... }:
 
 let 
-  packageSet = (import ../../package-set/desktop-linux.nix);
-  packageSetUtilities = (import ../../package-set/utilities.nix);
+  packageModuleUtilities = (import ../../package-modules/utilities.nix);
+  desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
 
-  userPackages = packageSetUtilities.genUserPackages { inherit pkgs; inherit packageSet; };
+  desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
 
-  packageSetModulePaths = packageSetUtilities.genHomeModulePaths { prefix = ../../user; inherit packageSet; };
+  packageModuleIDs = desktopEnvConfig.packageModuleIDs;
+
+  packageModule = packageModuleUtilities.combinePackageModules { packageModules = packageModuleUtilities.getPackageModules { inherit packageModuleIDs; }; };
+
+  packageModuleModulePaths = packageModuleUtilities.genHomeModulePaths { prefix = ../../home; inherit packageModule; };
 in
 {
-  imports = packageSetModulePaths ++ [];
+  imports = packageModuleModulePaths ++ [];
 
   config = {
     home.username = userSettings.username;
     home.homeDirectory = "/home/${userSettings.username}";
-
-    home.packages = userPackages;
 
     home.stateVersion = "25.11";
   };

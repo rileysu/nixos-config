@@ -4,6 +4,7 @@
     {
       packageID = "doas";
       systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
   ];
 

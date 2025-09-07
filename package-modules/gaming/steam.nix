@@ -3,6 +3,7 @@
     {
       packageID = "steam";
       systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
     }
   ];
 

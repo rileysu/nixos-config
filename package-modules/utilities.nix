@@ -38,4 +38,7 @@ rec {
 
   genSystemModulePaths = { prefix, packageModule }: 
     genModulePaths { inherit prefix; inherit packageModule; attr = "systemModulePathSuffix"; };
+
+  genHomeModulePaths = { prefix, packageModule }: 
+    genModulePaths { inherit prefix; inherit packageModule; attr = "homeModulePathSuffix"; };
 }
