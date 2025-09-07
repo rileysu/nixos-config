@@ -3,7 +3,7 @@ let
     wallpaperPath = ../../wallpapers/${userSettings.wallpaper};
 
     volumeModule =
-        if desktopEnvConfig.sway.volume.enabled
+        if desktopEnvConfig.windowManager.volume.enabled
         then
             ''
                 # Special Volume
@@ -15,7 +15,7 @@ let
         else "";
 
     brightnessModule =
-        if desktopEnvConfig.sway.brightness.enabled
+        if desktopEnvConfig.windowManager.brightness.enabled
         then
             ''
                 # Special Brightness
@@ -25,11 +25,11 @@ let
         else "";
     
     cursorModule = 
-        if desktopEnvConfig.sway.cursor.enabled
+        if desktopEnvConfig.windowManager.cursor.enabled
         then
             ''
                 #Set Cursor
-                seat seat0 xcursor_theme ${desktopEnvConfig.sway.cursor.themeName} ${builtins.toString desktopEnvConfig.sway.cursor.size}
+                seat seat0 xcursor_theme ${desktopEnvConfig.windowManager.cursor.themeName} ${builtins.toString desktopEnvConfig.windowManager.cursor.size}
             ''
         else "";
 in

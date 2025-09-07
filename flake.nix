@@ -6,17 +6,13 @@
         systemSettings = {
             system = "x86_64-linux";
             hostname = "riley-laptop";
-            profile = "laptop-linux";
+            profile = "linux";
             systemProfile = "albatross";
             timezone = "Sydney/Australia";
             defaultLocale = "en_AU.UTF-8";
 
-            desktopEnvProfile = "sway-laptop"; # Can be null
-
-            defaultShell = "nushell"; # Can be null
-            defaultEditor = "neovim"; # Can be null
-            defaultEditorCommand = "nvim"; # Can be null
-            defaultTerminal = "alacritty"; # Can be null
+            desktopEnvProfile = "sway-laptop";
+            desktopEnvOverwrites = {};
         };
 
         userSettings = {

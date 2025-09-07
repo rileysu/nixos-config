@@ -5,7 +5,7 @@ let
 
   desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
   desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
-  launchSuffix = if desktopEnvConfig.launchCommand != null then "--cmd ${desktopEnvConfig.launchCommand}" else "";
+  launchSuffix = if desktopEnvConfig.greeter.launchCommand != null then "--cmd ${desktopEnvConfig.greeter.launchCommand}" else "";
 in
 {
   config = {

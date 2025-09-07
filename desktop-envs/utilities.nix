@@ -3,9 +3,25 @@ rec {
     name = null;
 
     config = {
-      launchCommand = null;
-    
-      sway = {
+      packageModuleIDs = [];
+
+      greeter = {
+        launchCommand = null;
+      };
+
+      shell = {
+        defaultCommand = null;
+      };
+
+      editor = {
+        defaultCommand = null;
+      };
+
+      terminal = {
+        defaultCommand = null;
+      };
+
+      windowManager = {
         volume.enabled = false;
         brightness.enabled = false;
 

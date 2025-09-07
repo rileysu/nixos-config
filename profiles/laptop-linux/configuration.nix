@@ -3,28 +3,12 @@
 let
   packageModuleUtilities = (import ../../package-modules/utilities.nix);
   wrapperUtilities = (import ../../wrappers/utilities.nix);
+  desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
+  desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
 
   wrapperPkgs = wrapperUtilities.genWrapperPkgs { inherit wrapper-manager; inherit pkgs; inherit userSettings; inherit systemSettings; };
 
-  defaultShellPackageModuleID = if systemSettings.defaultShell != null then [ "shells/${systemSettings.defaultShell}" ] else [];
-  defaultEditorPackageModuleID = if systemSettings.defaultEditor != null then [ "editors/${systemSettings.defaultEditor}" ] else [];
-  defaultTerminalPackageModuleID = if systemSettings.defaultTerminal != null then [ "terminals/${systemSettings.defaultTerminal}" ] else [];
-  packageModuleIDs = [
-    "greeters/tuigreet"
-
-    "desktop-envs/sway-laptop"
-    "services/pipewire"
-    "services/bluez"
-
-    "general-cli-apps"
-
-    "browsers/brave"
-    "gaming/steam"
-    "gaming/prismlauncher"
-  ] 
-  ++ defaultShellPackageModuleID
-  ++ defaultEditorPackageModuleID
-  ++ defaultTerminalPackageModuleID;
+  packageModuleIDs = desktopEnvConfig.packageModuleIDs;
 
   packageModule = packageModuleUtilities.combinePackageModules { packageModules = packageModuleUtilities.getPackageModules { inherit packageModuleIDs; }; };
 
