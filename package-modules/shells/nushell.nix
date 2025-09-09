@@ -6,6 +6,11 @@
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/nushell/default.nix";
     }
+    {
+      packageID = "carapace";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
   ];
 
   wrapped = [];
