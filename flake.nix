@@ -61,6 +61,8 @@
     };
 
     inputs = {
+        self.submodules = true;
+
         nixpkgs.url = "nixpkgs/nixos-unstable";
 
         home-manager.url = "github:nix-community/home-manager";

@@ -3,7 +3,7 @@
     {
       packageID = "neovim";
       systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
+      homeModulePathSuffix = "/neovim/default.nix";
     }
   ];
 

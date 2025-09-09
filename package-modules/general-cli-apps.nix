@@ -9,7 +9,7 @@
     {
       packageID = "git";
       systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
+      homeModulePathSuffix = "/git/default.nix";
     }
     {
       packageID = "curl";
