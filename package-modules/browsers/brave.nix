@@ -4,7 +4,7 @@
     {
       packageID = "brave";
       systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
+      homeModulePathSuffix = "/brave/default.nix";
     }
   ];
 

@@ -25,12 +25,25 @@ rec {
         volume.enabled = false;
         brightness.enabled = false;
 
+        chooser = {
+          defaultCommand = null;  
+          defaultRunCommand = null;  
+        };
+
         cursor = {
           enabled = false;
 
           themeName = null;
           size = null;
         };
+
+        displays = [
+          #{
+          #  identifier = null;
+          #  mode = null;
+          #  allowTearing = false;
+          #}
+        ];
       };
 
       bar = {
@@ -38,11 +51,30 @@ rec {
         brightness.enabled = false;
         battery.enabled = false;
       };
+
+
     };
   };
 
+  deepMerge =
+    lhs: rhs:
+    lhs 
+    // rhs
+    // (builtins.mapAttrs (
+      rName: rValue:
+      let 
+        lValue = lhs.${rName} or null;
+      in
+      if builtins.isAttrs lValue && builtins.isAttrs rValue then
+        deepMerge lValue rValue
+      else if builtins.isList lValue && builtins.isList rValue then
+        lValue ++ rValue
+      else
+        rValue
+    ) rhs);
+
   importProfile = { profile }:
-    baseEnv //
+    deepMerge baseEnv
     (if profile != null then
       (import ./${profile}.nix)
     else

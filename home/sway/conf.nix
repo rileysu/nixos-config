@@ -1,5 +1,12 @@
 { userSettings, systemSettings, themeNamed, desktopEnvConfig }:
 let
+    outputModule = builtins.concatStringsSep "\n" (builtins.map 
+      (display: 
+        ''
+          output ${display.identifier} mode ${display.mode} allow_tearing ${if display.allow_tearing then "yes" else "no"}
+        '')
+      desktopEnvConfig.windowManager.displays);
+
     wallpaperPath = ../../wallpapers/${userSettings.wallpaper};
 
     volumeModule =
@@ -23,6 +30,44 @@ let
                 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
             ''
         else "";
+
+    volumeAndBrightnessModeModule =
+        if desktopEnvConfig.windowManager.volume.enabled || desktopEnvConfig.windowManager.brightness.enabled
+        then
+          let
+            volumeSub = if desktopEnvConfig.windowManager.volume.enabled then
+            ''
+                bindsym h exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+                bindsym l exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+                bindsym m exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+                bindsym Shift+m exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle 
+            '' else "";
+            volumeDescSub = if desktopEnvConfig.windowManager.volume.enabled 
+              then " (h) volume -, (l) volume +, (m) mute out, (Shift+m) mute in"
+              else "";
+
+            brightnessSub = if desktopEnvConfig.windowManager.brightness.enabled then
+            ''
+                bindsym j exec brightnessctl set 5%-
+                bindsym k exec brightnessctl set 5%+
+            '' else "";
+            brightnessDescSub = if desktopEnvConfig.windowManager.brightness.enabled
+              then " (j) birghtness -, (k) brightness +"
+              else "";
+          in
+          ''
+            # Volume and Brightness
+            set $volume_and_brightness "Volume + Brightness${volumeDescSub}${brightnessDescSub}" 
+            mode $volume_and_brightness {
+                ${volumeSub}
+
+                ${brightnessSub}
+
+                bindsym Return mode "default"
+                bindsym Escape mode "default"
+            }
+            bindsym $mod+Shift+v mode $volume_and_brightness
+          '' else "";
     
     cursorModule = 
         if desktopEnvConfig.windowManager.cursor.enabled
@@ -34,7 +79,12 @@ let
         else "";
 in
 ''
+include /etc/sway/config.d/*
+
 ## General ##
+
+# Output
+${outputModule}
 
 # Set wallpaper
 output * background ${wallpaperPath} fill
@@ -100,51 +150,13 @@ tiling_drag disable
 ## Key bindings ##
 
 # Launch
-bindsym $mod+d exec bemenu-run \
-            --prompt \
-            "run:" \
-            --list \
-            "16" \
-            --fn \
-            "Roboto Mono Regular 10" \
-            -H \
-            "24" \
-            -i \
-            --tb \
-            "#${themeNamed.foreground}" \
-            --tf \
-            "#${themeNamed.background}" \
-            --fb \
-            "#${themeNamed.background}" \
-            --ff \
-            "#${themeNamed.foreground}" \
-            --cb \
-            "#${themeNamed.foreground}" \
-            --cf \
-            "#${themeNamed.background}" \
-            --nb \
-            "#${themeNamed.background}" \
-            --nf \
-            "#${themeNamed.foreground}" \
-            --ab \
-            "#${themeNamed.background}" \
-            --af \
-            "#${themeNamed.foreground}" \
-            --hb \
-            "#${themeNamed.foreground}" \
-            --hf \
-            "#${themeNamed.background}" \
-            --sb \
-            "#${themeNamed.foreground}" \
-            --sf \
-            "#${themeNamed.background}"
+bindsym $mod+d exec bemenu-run
 bindsym $mod+Return exec $terminal
 
 # Kill
 bindsym $mod+Shift+q kill
 
 # Layout
-bindsym $mod+r mode resize
 bindsym $mod+s splith
 bindsym $mod+v splitv
 bindsym $mod+q layout stacking
@@ -205,6 +217,25 @@ ${volumeModule}
 ${brightnessModule}
 
 ## Modes ##
+# Resize
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize shrink height 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize shrink height 10 px or 10 ppt
+    bindsym Up resize grow height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode resize
+
+${volumeAndBrightnessModeModule}
 
 # Exit
 set $lock_command swaylock -f -e

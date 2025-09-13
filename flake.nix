@@ -5,14 +5,28 @@
     let
         systemSettings = {
             system = "x86_64-linux";
-            hostname = "riley-laptop";
-            profile = "linux";
-            systemProfile = "albatross";
+            hostname = "riley-desktop";
+            systemProfile = "ox";
             timezone = "Sydney/Australia";
             defaultLocale = "en_AU.UTF-8";
 
-            desktopEnvProfile = "sway-laptop";
-            desktopEnvOverwrites = {};
+            desktopEnvProfile = "sway-desktop";
+            desktopEnvOverwrites = {
+              config = {
+                windowManager.displays = [
+                  {
+                    identifier = "AOC 2460 Unknown";
+                    mode = "1920x1080@60Hz";
+                    allowTearing = true;
+                  }
+                  {
+                    identifier = "ASUSTek COMPUTER INC VG27A R4LMQS078093";
+                    mode = "2560x1440@143.972Hz";
+                    allowTearing = true;
+                  }
+                ];
+              }; 
+            };
         };
 
         userSettings = {
@@ -43,12 +57,12 @@
                 };
                 modules = [
                     nix-flatpak.nixosModules.nix-flatpak
-                    (./. + "/profiles" + ("/" + systemSettings.profile) + "/configuration.nix")
+                    (./. + "/profiles/linux/configuration.nix")
                     (./. + "/system-profiles" + ("/" + systemSettings.systemProfile) + "/hardware-configuration.nix")
                     home-manager.nixosModules.home-manager {
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
-                        home-manager.users.${userSettings.username} = (./. + "/profiles" + ("/" + systemSettings.profile) + "/home.nix");
+                        home-manager.users.${userSettings.username} = (./. + "/profiles/linux/home.nix");
                         home-manager.extraSpecialArgs = {
                             inherit systemSettings;
                             inherit userSettings;

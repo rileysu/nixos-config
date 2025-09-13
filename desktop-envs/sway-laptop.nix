@@ -40,6 +40,12 @@
       volume.enabled = true;
       brightness.enabled = true;
 
+      chooser = {
+        defaultCommand = "bemenu";
+        defaultRunCommand = "bemenu-run";
+      };
+
+
       cursor = {
         enabled = true;
         

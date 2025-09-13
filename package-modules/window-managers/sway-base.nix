@@ -6,13 +6,8 @@ in
     # WM + WM Apps
     {
       packageID = "sway";
-      systemModulePathSuffix = null;
+      systemModulePathSuffix = "/window-managers/sway.nix";
       homeModulePathSuffix = "/sway/default.nix";
-    }
-    {
-      packageID = "bemenu";
-      systemModulePathSuffix = null;
-      homeModulePathSuffix = null;
     }
     {
       packageID = "i3status-rust";
@@ -51,7 +46,13 @@ in
     }
   ];
 
-  wrapped = [];
+  wrapped = [
+    {
+      packageID = "bemenu";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
+  ];
 
   font = fontBase.font ++ [];
 

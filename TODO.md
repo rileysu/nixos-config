@@ -1,4 +1,5 @@
-[ ] Firefox Config
+[X] Firefox Config
 [ ] Darwin
-[ ] Finish Sway
+[X] Finish Sway
 [X] Package set to dedupe system + home manager package redef
+[ ] Link default commands from Env to Sway

@@ -36,12 +36,6 @@ in
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
 
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-    ];
-    xdg.portal.config.common.default = "*";
-
     # Globally installed packages
     environment.systemPackages = systemPackages ++ wrappedPackages;
 
