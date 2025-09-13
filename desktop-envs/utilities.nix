@@ -73,17 +73,17 @@ rec {
         rValue
     ) rhs);
 
-  importProfile = { profile }:
-    deepMerge baseEnv
+  importProfile = { profile, lib, pkgs, userSettings, systemSettings }:
+    deepMerge (deepMerge baseEnv
     (if profile != null then
-      (import ./${profile}.nix)
+      ((import ./${profile}.nix) { inherit lib pkgs userSettings systemSettings; })
     else
       {}
-    );
+    )) systemSettings.desktopEnvOverrides;
 
-  getDesktopEnvName = { profile }:
-    (importProfile { inherit profile; }).name;
+  getDesktopEnvName = { profile, lib, pkgs, userSettings, systemSettings }:
+    (importProfile { inherit profile lib pkgs userSettings systemSettings; }).name;
 
-  getDesktopEnvConfig = { profile }:
-    (importProfile { inherit profile; }).config;
+  getDesktopEnvConfig = { profile, lib, pkgs, userSettings, systemSettings }:
+    (importProfile { inherit profile lib pkgs userSettings systemSettings; }).config;
 }

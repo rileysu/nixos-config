@@ -5,7 +5,7 @@ let
   wrapperUtilities = (import ../../wrappers/utilities.nix);
   desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
   
-  desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
+  desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; inherit lib pkgs userSettings systemSettings; };
 
   wrapperPkgs = wrapperUtilities.genWrapperPkgs { inherit wrapper-manager; inherit pkgs; inherit userSettings; inherit systemSettings; };
 

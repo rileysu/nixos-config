@@ -3,7 +3,7 @@ let
     outputModule = builtins.concatStringsSep "\n" (builtins.map 
       (display: 
         ''
-          output ${display.identifier} mode ${display.mode} allow_tearing ${if display.allow_tearing then "yes" else "no"}
+          output "${display.identifier}" mode ${display.mode} allow_tearing ${if display.allowTearing then "yes" else "no"}
         '')
       desktopEnvConfig.windowManager.displays);
 

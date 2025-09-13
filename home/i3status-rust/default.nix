@@ -5,7 +5,7 @@
     themeNamed = themeUtilities.toNamed { inherit theme; };
 
     desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
-    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
+    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; inherit lib pkgs userSettings systemSettings; };
 
     conf = (import ./conf.nix) { inherit userSettings systemSettings themeNamed desktopEnvConfig; };
   in {

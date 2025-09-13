@@ -1,3 +1,4 @@
+{ lib, pkgs, userSettings, systemSettings }:
 {
   name = "Sway Desktop";
   
@@ -14,7 +15,10 @@
 
     "general-cli-apps"
 
+    "utilities/yazi"
+
     "browsers/brave"
+    "development/gcc"
     "gaming/steam"
     "gaming/prismlauncher"
     ];

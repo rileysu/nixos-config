@@ -36,5 +36,5 @@ cyan = "#${theme.base0C}"
 white = "#${theme.base05}"
 
 [window]
-opacity = 0.9
+opacity = 0.8
 ''

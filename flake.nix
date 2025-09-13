@@ -11,7 +11,7 @@
             defaultLocale = "en_AU.UTF-8";
 
             desktopEnvProfile = "sway-desktop";
-            desktopEnvOverwrites = {
+            desktopEnvOverrides = {
               config = {
                 windowManager.displays = [
                   {

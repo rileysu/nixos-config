@@ -1,3 +1,5 @@
+
+{ lib, pkgs, userSettings, systemSettings }:
 {
   name = "Sway Laptop";
   
@@ -45,13 +47,20 @@
         defaultRunCommand = "bemenu-run";
       };
 
-
       cursor = {
         enabled = true;
         
         themeName = "Bibata-Modern-Ice";
         size = 22;
       };
+
+      displays = [
+        #{
+        #  identifier = null;
+        #  mode = null;
+        #  allowTearing = false;
+        #}
+      ];
     };
 
     bar = {

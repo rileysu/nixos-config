@@ -1,7 +1,7 @@
 { config, lib, pkgs, userSettings, systemSettings, ... }: 
   let
     desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
-    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
+    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; inherit lib pkgs userSettings systemSettings; };
 
     defaultEditorLine = 
       if desktopEnvConfig.editor.defaultCommand != null 
