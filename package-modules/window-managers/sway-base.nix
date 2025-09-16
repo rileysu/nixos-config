@@ -10,6 +10,11 @@ in
       homeModulePathSuffix = "/sway/default.nix";
     }
     {
+      packageID = "waybar";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = "/waybar/default.nix";
+    }
+    {
       packageID = "i3status-rust";
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/i3status-rust/default.nix";

@@ -7,7 +7,7 @@
             system = "x86_64-linux";
             hostname = "riley-desktop";
             systemProfile = "ox";
-            timezone = "Sydney/Australia";
+            timezone = "Australia/Sydney";
             defaultLocale = "en_AU.UTF-8";
 
             desktopEnvProfile = "sway-desktop";

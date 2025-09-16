@@ -96,6 +96,7 @@ set $mod Mod4
 set $terminal alacritty
 
 # Startup commands
+exec waybar
 exec mako
 
 # Font configuration
