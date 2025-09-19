@@ -5,7 +5,9 @@
 
     "modules-left": [
         "sway/workspaces",
-        "sway/mode",
+        "sway/mode"
+    ],
+    "modules-center": [
         "sway/window"
     ],
     "modules-right": [

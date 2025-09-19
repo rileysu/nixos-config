@@ -1,9 +1,44 @@
 { userSettings, systemSettings, themeNamed, desktopEnvConfig }:
 let
+    notificationDaemonModule = 
+      if desktopEnvConfig.windowManager.notificationDaemon.enabled
+      then "exec ${desktopEnvConfig.windowManager.notificationDaemon.defaultCommand}"
+      else "";
+
+    barModule =
+      if desktopEnvConfig.windowManager.bar.enabled
+      then 
+        if !desktopEnvConfig.windowManager.bar.integrated
+        then "exec ${desktopEnvConfig.windowManager.bar.defaultCommand}"
+        else 
+        ''
+          bar {
+              mode dock
+              height 24
+              position top
+              font pango:Roboto Mono Regular 10
+
+              status_command i3status-rs
+
+              colors {
+                  background #${themeNamed.background}
+                  statusline #${themeNamed.foreground}
+                  separator #${themeNamed.surface1}
+                  
+                  focused_workspace   #${themeNamed.foreground} #${themeNamed.foreground} #${themeNamed.background}
+                  active_workspace    #${themeNamed.surface1} #${themeNamed.background} #${themeNamed.foreground}
+                  inactive_workspace  #${themeNamed.surface1} #${themeNamed.background} #${themeNamed.foreground}
+                  urgent_workspace    #${themeNamed.red} #${themeNamed.red} #${themeNamed.background}
+                  binding_mode        #${themeNamed.green} #${themeNamed.green} #${themeNamed.background}
+              }
+          }
+        ''
+      else "";
+
     outputModule = builtins.concatStringsSep "\n" (builtins.map 
       (display: 
         ''
-          output "${display.identifier}" mode ${display.mode} allow_tearing ${if display.allowTearing then "yes" else "no"}
+          output "${display.identifier}" mode ${display.mode}Hz allow_tearing ${if display.allowTearing then "yes" else "no"}
         '')
       desktopEnvConfig.windowManager.displays);
 
@@ -95,9 +130,11 @@ ${cursorModule}
 set $mod Mod4
 set $terminal alacritty
 
-# Startup commands
-exec waybar
-exec mako
+# Notification Daemon
+${notificationDaemonModule}
+
+# Bar
+${barModule}
 
 # Font configuration
 font pango:Roboto Mono Regular 10
@@ -119,28 +156,6 @@ client.focused_inactive #${themeNamed.foreground} #${themeNamed.background} #${t
 client.unfocused        #${themeNamed.foreground} #${themeNamed.background} #${themeNamed.foreground} #${themeNamed.foreground} #${themeNamed.foreground}
 client.urgent           #${themeNamed.red} #${themeNamed.background} #${themeNamed.foreground} #${themeNamed.red} #${themeNamed.red}
 client.placeholder      #${themeNamed.blue} #${themeNamed.background} #${themeNamed.foreground} #${themeNamed.blue} #${themeNamed.blue}
-
-# Bar
-bar {
-    mode dock
-    height 24
-    position top
-    font pango:Roboto Mono Regular 10
-
-    status_command i3status-rs
-
-    colors {
-        background #${themeNamed.background}
-        statusline #${themeNamed.foreground}
-        separator #${themeNamed.surface1}
-        
-        focused_workspace   #${themeNamed.foreground} #${themeNamed.foreground} #${themeNamed.background}
-        active_workspace    #${themeNamed.surface1} #${themeNamed.background} #${themeNamed.foreground}
-        inactive_workspace  #${themeNamed.surface1} #${themeNamed.background} #${themeNamed.foreground}
-        urgent_workspace    #${themeNamed.red} #${themeNamed.red} #${themeNamed.background}
-        binding_mode        #${themeNamed.green} #${themeNamed.green} #${themeNamed.background}
-    }
-}
 
 ## Control ##
 

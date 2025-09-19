@@ -15,7 +15,7 @@ window#waybar {
     background-color: #${themeNamed.background};
     color: #${themeNamed.foreground};
     transition: background-color 0.5s;
-    padding: 0 6px; /* no vertical padding */
+    padding: 0 8px; 
 }
 
 window#waybar.hidden {
@@ -34,10 +34,10 @@ window#waybar.hidden {
 #idle_inhibitor,
 #keyboard-state,
 #scratchpad {
-    padding: 2px 6px; /* slimmed down */
     background-color: #${themeNamed.surface0};
     color: #${themeNamed.foreground};
-    border: 1px solid #${themeNamed.surface1};
+    border: 1px solid #${themeNamed.surface2};
+    padding: 4px 8px;
 }
 
 #battery.charging {
@@ -59,16 +59,23 @@ window#waybar.hidden {
 }
 
 #workspaces button { 
-    padding: 2px 6px;
+    min-width: 0;
+    min-height: 0;
     margin: 0;
     background-color: #${themeNamed.surface0};
     color: #${themeNamed.foreground};
-    border: 1px solid #${themeNamed.surface1};
+    border: 1px solid #${themeNamed.surface2};
+    padding: 4px 8px;
 }
 
-#workspaces button:hover,
+#workspaces button:hover {
+    background-color: #${themeNamed.foreground}; 
+    color: #${themeNamed.background};
+    border: 1px solid #${themeNamed.foreground};
+}
+
 #workspaces button.focused {
-    background-color: #${themeNamed.foreground};
+    background-color: #${themeNamed.foreground}; 
     color: #${themeNamed.background};
     border: 1px solid #${themeNamed.foreground};
 }

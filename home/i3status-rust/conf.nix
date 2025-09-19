@@ -1,7 +1,7 @@
 { userSettings, systemSettings, themeNamed, desktopEnvConfig }:
 let
   batteryModule =
-    if desktopEnvConfig.bar.battery.enabled
+    if desktopEnvConfig.windowManager.bar.battery.enabled
     then
       ''
         [[block]]
@@ -17,7 +17,7 @@ let
     else "";
 
   brightnessModule =
-    if desktopEnvConfig.bar.brightness.enabled
+    if desktopEnvConfig.windowManager.bar.brightness.enabled
     then
       ''
         [[block]]
@@ -27,7 +27,7 @@ let
     else "";
 
   volumeModule = 
-    if desktopEnvConfig.bar.sound.enabled
+    if desktopEnvConfig.windowManager.bar.sound.enabled
     then
       ''
         [[block]]

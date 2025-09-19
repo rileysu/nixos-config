@@ -54,6 +54,23 @@
         size = 22;
       };
 
+      notificationDaemon = {
+        enabled = true;
+
+        defaultCommand = "mako";
+      };
+
+      bar = {
+        enabled = true;
+
+        defaultCommand = "waybar";
+        integrated = false;
+
+        sound.enabled = true;
+        brightness.enabled = true;
+        battery.enabled = true;
+      };
+
       displays = [
         #{
         #  identifier = null;
@@ -61,12 +78,6 @@
         #  allowTearing = false;
         #}
       ];
-    };
-
-    bar = {
-      sound.enabled = true;
-      brightness.enabled = true;
-      battery.enabled = true;
     };
   };
 }

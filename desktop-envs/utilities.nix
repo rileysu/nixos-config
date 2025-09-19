@@ -36,6 +36,23 @@ rec {
           themeName = null;
           size = null;
         };
+      
+        notificationDaemon = {
+          enabled = false;
+
+          defaultCommand = "mako";
+        };
+        
+        bar = {
+          enabled = false;
+
+          defaultCommand = null;
+          integrated = false;
+
+          sound.enabled = false;
+          brightness.enabled = false;
+          battery.enabled = false;
+        };
 
         displays = [
           #{
@@ -46,11 +63,7 @@ rec {
         ];
       };
 
-      bar = {
-        sound.enabled = false;
-        brightness.enabled = false;
-        battery.enabled = false;
-      };
+
 
 
     };

@@ -16,12 +16,12 @@
                 windowManager.displays = [
                   {
                     identifier = "AOC 2460 Unknown";
-                    mode = "1920x1080@60Hz";
+                    mode = "1920x1080@60";
                     allowTearing = true;
                   }
                   {
                     identifier = "ASUSTek COMPUTER INC VG27A R4LMQS078093";
-                    mode = "2560x1440@143.972Hz";
+                    mode = "2560x1440@143.972";
                     allowTearing = true;
                   }
                 ];

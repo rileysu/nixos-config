@@ -48,6 +48,24 @@
         defaultRunCommand = "bemenu-run";
       };
 
+      notificationDaemon = {
+        enabled = true;        
+
+        defaultCommand = "mako";
+      };
+
+      bar = {
+        enabled = true;
+
+        defaultCommand = "waybar";
+        integrated = false;
+
+        sound.enabled = true;
+        brightness.enabled = false;
+        battery.enabled = false;
+      };
+
+
       cursor = {
         enabled = true;
         
@@ -64,10 +82,5 @@
       ];
     };
 
-    bar = {
-      sound.enabled = true;
-      brightness.enabled = false;
-      battery.enabled = false;
-    };
-  };
+      };
 }
