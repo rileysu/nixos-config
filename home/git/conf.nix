@@ -1,6 +1,6 @@
-{ userSettings, systemSettings, themeNamed, desktopEnvConfig }:
+{ themeNamed, inputConfig }:
 ''
 [user]
-    email = ${userSettings.email}
-    name = ${userSettings.name}
+    email = ${inputConfig.user.email}
+    name = ${inputConfig.user.name}
 ''

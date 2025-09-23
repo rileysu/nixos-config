@@ -1,4 +1,4 @@
-{ userSettings, systemSettings, themeNamed, desktopEnvConfig }:
+{ themeNamed, inputConfig }:
 ''
 * {
     font-family: "Roboto Mono", monospace;

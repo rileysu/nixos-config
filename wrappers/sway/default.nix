@@ -1,13 +1,10 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }: 
+{ config, lib, pkgs, inputConfig, ... }: 
   let
     themeUtilities = (import ../../themes/utilities.nix);
-    theme = themeUtilities.getTheme { inherit userSettings; };
+    theme = themeUtilities.getTheme { theme = inputConfig.theme.name; };
     themeNamed = themeUtilities.toNamed { inherit theme; };
 
-    desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
-    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
-
-    conf = pkgs.writeText "config" ((import ./conf.nix) { inherit userSettings systemSettings themeNamed desktopEnvConfig; });
+    conf = pkgs.writeText "config" ((import ./conf.nix) { inherit themeNamed inputConfig; });
   in {
     config = {
       wrappers.sway = {

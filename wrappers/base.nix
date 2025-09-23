@@ -1,4 +1,4 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }: {
+{ config, lib, pkgs, inputConfig, ... }: {
   imports = [
     ./alacritty/default.nix
     ./bemenu/default.nix

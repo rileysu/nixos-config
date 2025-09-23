@@ -1,13 +1,12 @@
 {
-  genWrapperPkgs = { wrapper-manager, pkgs, userSettings, systemSettings }:
+  genWrapperPkgs = { wrapper-manager, pkgs, inputConfig }:
     let
       wrapper-managerEval = wrapper-manager.lib {
           inherit pkgs;
 
           modules = [ ./base.nix ];
           specialArgs = {
-            inherit userSettings;
-            inherit systemSettings;
+            inherit inputConfig;
           };
       };
     in

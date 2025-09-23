@@ -1,15 +1,12 @@
-{ config, lib, pkgs, userSettings, systemSettings, wrapper-manager, ... }:
+{ config, lib, pkgs, inputConfig, wrapper-manager, ... }:
 
 let
   packageModuleUtilities = (import ../../package-modules/utilities.nix);
   wrapperUtilities = (import ../../wrappers/utilities.nix);
-  desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
-  
-  desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; inherit lib pkgs userSettings systemSettings; };
 
-  wrapperPkgs = wrapperUtilities.genWrapperPkgs { inherit wrapper-manager; inherit pkgs; inherit userSettings; inherit systemSettings; };
+  wrapperPkgs = wrapperUtilities.genWrapperPkgs { inherit wrapper-manager; inherit pkgs; inherit inputConfig; };
 
-  packageModuleIDs = desktopEnvConfig.packageModuleIDs;
+  packageModuleIDs = inputConfig.packageModuleIDs;
 
   packageModule = packageModuleUtilities.combinePackageModules { packageModules = packageModuleUtilities.getPackageModules { inherit packageModuleIDs; }; };
 

@@ -1,15 +1,15 @@
-{ userSettings, systemSettings, themeNamed, desktopEnvConfig }:
+{ themeNamed, inputConfig }:
 let
     notificationDaemonModule = 
-      if desktopEnvConfig.windowManager.notificationDaemon.enabled
-      then "exec ${desktopEnvConfig.windowManager.notificationDaemon.defaultCommand}"
+      if inputConfig.windowManager.notificationDaemon.enabled
+      then "exec ${inputConfig.windowManager.notificationDaemon.defaultCommand}"
       else "";
 
     barModule =
-      if desktopEnvConfig.windowManager.bar.enabled
+      if inputConfig.windowManager.bar.enabled
       then 
-        if !desktopEnvConfig.windowManager.bar.integrated
-        then "exec ${desktopEnvConfig.windowManager.bar.defaultCommand}"
+        if !inputConfig.windowManager.bar.integrated
+        then "exec ${inputConfig.windowManager.bar.defaultCommand}"
         else 
         ''
           bar {
@@ -40,12 +40,12 @@ let
         ''
           output "${display.identifier}" mode ${display.mode}Hz allow_tearing ${if display.allowTearing then "yes" else "no"}
         '')
-      desktopEnvConfig.windowManager.displays);
+      inputConfig.windowManager.displays);
 
-    wallpaperPath = ../../wallpapers/${userSettings.wallpaper};
+    wallpaperPath = ../../wallpapers/${inputConfig.theme.wallpaper};
 
     volumeModule =
-        if desktopEnvConfig.windowManager.volume.enabled
+        if inputConfig.windowManager.volume.enabled
         then
             ''
                 # Special Volume
@@ -57,7 +57,7 @@ let
         else "";
 
     brightnessModule =
-        if desktopEnvConfig.windowManager.brightness.enabled
+        if inputConfig.windowManager.brightness.enabled
         then
             ''
                 # Special Brightness
@@ -67,26 +67,26 @@ let
         else "";
 
     volumeAndBrightnessModeModule =
-        if desktopEnvConfig.windowManager.volume.enabled || desktopEnvConfig.windowManager.brightness.enabled
+        if inputConfig.windowManager.volume.enabled || inputConfig.windowManager.brightness.enabled
         then
           let
-            volumeSub = if desktopEnvConfig.windowManager.volume.enabled then
+            volumeSub = if inputConfig.windowManager.volume.enabled then
             ''
                 bindsym h exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
                 bindsym l exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
                 bindsym m exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
                 bindsym Shift+m exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle 
             '' else "";
-            volumeDescSub = if desktopEnvConfig.windowManager.volume.enabled 
+            volumeDescSub = if inputConfig.windowManager.volume.enabled 
               then " (h) volume -, (l) volume +, (m) mute out, (Shift+m) mute in"
               else "";
 
-            brightnessSub = if desktopEnvConfig.windowManager.brightness.enabled then
+            brightnessSub = if inputConfig.windowManager.brightness.enabled then
             ''
                 bindsym j exec brightnessctl set 5%-
                 bindsym k exec brightnessctl set 5%+
             '' else "";
-            brightnessDescSub = if desktopEnvConfig.windowManager.brightness.enabled
+            brightnessDescSub = if inputConfig.windowManager.brightness.enabled
               then " (j) birghtness -, (k) brightness +"
               else "";
           in
@@ -105,11 +105,11 @@ let
           '' else "";
     
     cursorModule = 
-        if desktopEnvConfig.windowManager.cursor.enabled
+        if inputConfig.windowManager.cursor.enabled
         then
             ''
                 #Set Cursor
-                seat seat0 xcursor_theme ${desktopEnvConfig.windowManager.cursor.themeName} ${builtins.toString desktopEnvConfig.windowManager.cursor.size}
+                seat seat0 xcursor_theme ${inputConfig.windowManager.cursor.themeName} ${builtins.toString inputConfig.windowManager.cursor.size}
             ''
         else "";
 in

@@ -1,5 +1,5 @@
 {
-  getTheme = { userSettings }: (import ./${userSettings.theme}.nix);
+  getTheme = { theme }: (import ./${theme}.nix);
   
   # https://github.com/chriskempson/base16/blob/main/styling.md
   toNamed = { theme }:

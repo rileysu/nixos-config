@@ -1,12 +1,9 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }:
+{ config, lib, pkgs, inputConfig, ... }:
 
 let 
   packageModuleUtilities = (import ../../package-modules/utilities.nix);
-  desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
 
-  desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; inherit lib pkgs userSettings systemSettings; };
-
-  packageModuleIDs = desktopEnvConfig.packageModuleIDs;
+  packageModuleIDs = inputConfig.packageModuleIDs;
 
   packageModule = packageModuleUtilities.combinePackageModules { packageModules = packageModuleUtilities.getPackageModules { inherit packageModuleIDs; }; };
 
@@ -16,8 +13,8 @@ in
   imports = packageModuleModulePaths ++ [];
 
   config = {
-    home.username = userSettings.username;
-    home.homeDirectory = "/home/${userSettings.username}";
+    home.username = inputConfig.user.username;
+    home.homeDirectory = "/home/${inputConfig.user.username}";
 
     home.stateVersion = "25.11";
   };

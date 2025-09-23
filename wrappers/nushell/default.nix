@@ -1,11 +1,8 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }: 
+{ config, lib, pkgs, inputConfig, ... }: 
   let
-    desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
-    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; inherit lib pkgs userSettings systemSettings; };
-
     defaultEditorLine = 
-      if desktopEnvConfig.editor.defaultCommand != null 
-        then "$env.config.buffer_editor = ${desktopEnvConfig.editor.defaultCommand}" 
+      if inputConfig.editor.defaultCommand != null 
+        then "$env.config.buffer_editor = ${inputConfig.editor.defaultCommand}" 
         else "";
         
     conf = pkgs.writeText "config.nu" 

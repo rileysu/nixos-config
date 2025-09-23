@@ -1,10 +1,10 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }: 
+{ config, lib, pkgs, inputConfig, ... }: 
   let
     themeUtilities = (import ../../themes/utilities.nix);
-    theme = themeUtilities.getTheme { inherit userSettings; };
+    theme = themeUtilities.getTheme { theme = inputConfig.theme.name; };
     themeNamed = themeUtilities.toNamed { inherit theme; };
 
-    conf = pkgs.writeText "init.lua" ((import ./conf.nix) { inherit pkgs userSettings systemSettings themeNamed; });
+    conf = pkgs.writeText "init.lua" ((import ./conf.nix) { inherit pkgs themeNamed inputConfig; });
   in {
     config = {
       wrappers.neovim = {

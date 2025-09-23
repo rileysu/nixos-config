@@ -1,4 +1,4 @@
-{ userSettings, systemSettings, themeNamed, desktopEnvConfig }:
+{ themeNamed, inputConfig }:
 ''
 max-visible=8
 sort=-time

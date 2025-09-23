@@ -1,4 +1,4 @@
-{ userSettings, systemSettings, theme }:
+{ theme, inputConfig }:
 ''
 animations {
     enabled = true

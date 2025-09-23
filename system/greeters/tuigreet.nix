@@ -1,11 +1,9 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }:
+{ config, lib, pkgs, inputConfig, ... }:
 
 let
   tuigreetPath = "${pkgs.tuigreet}/bin/tuigreet";
 
-  desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
-  desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; inherit lib pkgs userSettings systemSettings; };
-  launchSuffix = if desktopEnvConfig.greeter.launchCommand != null then "--cmd ${desktopEnvConfig.greeter.launchCommand}" else "";
+  launchSuffix = if inputConfig.greeter.launchCommand != null then "--cmd ${inputConfig.greeter.launchCommand}" else "";
 in
 {
   config = {

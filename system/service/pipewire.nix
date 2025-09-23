@@ -1,4 +1,4 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }:
+{ config, lib, pkgs, inputConfig, ... }:
 
 {
   config = {

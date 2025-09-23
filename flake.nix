@@ -3,40 +3,9 @@
 
     outputs = inputs@{ self, ... }:
     let
-        systemSettings = {
-            system = "x86_64-linux";
-            hostname = "riley-desktop";
-            systemProfile = "ox";
-            timezone = "Australia/Sydney";
-            defaultLocale = "en_AU.UTF-8";
-
-            desktopEnvProfile = "sway-desktop";
-            desktopEnvOverrides = {
-              config = {
-                windowManager.displays = [
-                  {
-                    identifier = "AOC 2460 Unknown";
-                    mode = "1920x1080@60";
-                    allowTearing = true;
-                  }
-                  {
-                    identifier = "ASUSTek COMPUTER INC VG27A R4LMQS078093";
-                    mode = "2560x1440@143.972";
-                    allowTearing = true;
-                  }
-                ];
-              }; 
-            };
-        };
-
-        userSettings = {
-            username = "riley";
-            name = "Riley";
-            email = "riley.d.sutton@gmail.com";
-            theme = "catppuccin_mocha";
-            wallpaper = "storm.jpg";
-        };
-
+        inputConfigUtilities = import ./input-configs/utilities.nix;
+        inputConfig = inputConfigUtilities.importProfile { profile = "systems/ox"; };
+ 
         lib = inputs.nixpkgs.lib;
 
         home-manager = inputs.home-manager;
@@ -49,11 +18,10 @@
 
     in {
         nixosConfigurations = {
-            ${systemSettings.hostname} = lib.nixosSystem {
-                system = systemSettings.system;
+            ${inputConfig.system.hostname} = lib.nixosSystem {
+                system = inputConfig.system.target;
                 specialArgs = {
-                    inherit systemSettings;
-                    inherit userSettings;
+                    inherit inputConfig;
                     inherit inputs;
                     inherit wrapper-manager;
                 };
@@ -63,14 +31,13 @@
                         nixpkgs.overlays = [ rust-overlay.overlays.default ];
                     })
                     (./. + "/profiles/linux/configuration.nix")
-                    (./. + "/system-profiles" + ("/" + systemSettings.systemProfile) + "/hardware-configuration.nix")
+                    (./. + "/hardware" + ("/" + inputConfig.system.hardware) + "/hardware-configuration.nix")
                     home-manager.nixosModules.home-manager {
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
-                        home-manager.users.${userSettings.username} = (./. + "/profiles/linux/home.nix");
+                        home-manager.users.${inputConfig.user.username} = (./. + "/profiles/linux/home.nix");
                         home-manager.extraSpecialArgs = {
-                            inherit systemSettings;
-                            inherit userSettings;
+                            inherit inputConfig;
                             inherit inputs;
                         };
                     }

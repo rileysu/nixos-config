@@ -1,7 +1,7 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }:
+{ config, lib, pkgs, inputConfig, ... }:
 
 {
   config = {
-    i18n.defaultLocale = systemSettings.defaultLocale;
+    i18n.defaultLocale = inputConfig.locale.default;
   };
 }

@@ -1,4 +1,4 @@
-{ userSettings, systemSettings, theme }:
+{ theme, inputConfig }:
 ''
-wallpaper = , ~/.wallpapers/${userSettings.wallpaper}
+wallpaper = , ~/.wallpapers/${inputConfig.theme.wallpaper}
 ''

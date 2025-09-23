@@ -1,15 +1,12 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }: 
+{ config, lib, pkgs, inputConfig, ... }: 
   let
     themeUtilities = (import ../../themes/utilities.nix);
-    theme = themeUtilities.getTheme { inherit userSettings; };
+    theme = themeUtilities.getTheme { theme = inputConfig.theme.name; };
     themeNamed = themeUtilities.toNamed { inherit theme; };
 
-    desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
-    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; inherit lib pkgs userSettings systemSettings; };
-
-    mainConf = (import ./conf.nix) { inherit userSettings systemSettings themeNamed desktopEnvConfig; };
-    keymapConf = (import ./keymap.nix) { inherit userSettings systemSettings themeNamed desktopEnvConfig; };
-    themeConf = (import ./theme.nix) { inherit userSettings systemSettings themeNamed desktopEnvConfig; };
+    mainConf = (import ./conf.nix) { inherit themeNamed inputConfig; };
+    keymapConf = (import ./keymap.nix) { inherit themeNamed inputConfig; };
+    themeConf = (import ./theme.nix) { inherit themeNamed inputConfig; };
   in {
     config = {
       xdg.configFile."yazi/yazi.toml" = {

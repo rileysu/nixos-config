@@ -1,15 +1,12 @@
 # https://github.com/goecho/goecho-waybar/tree/main/waybar
-{ config, lib, pkgs, userSettings, systemSettings, ... }: 
+{ config, lib, pkgs, inputConfig, ... }: 
   let
     themeUtilities = (import ../../themes/utilities.nix);
-    theme = themeUtilities.getTheme { inherit userSettings; };
+    theme = themeUtilities.getTheme { theme = inputConfig.theme.name; };
     themeNamed = themeUtilities.toNamed { inherit theme; };
 
-    desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
-    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; inherit lib pkgs userSettings systemSettings; };
-
-    conf = (import ./conf.nix) { inherit userSettings systemSettings themeNamed desktopEnvConfig; };
-    style = (import ./style.nix) { inherit userSettings systemSettings themeNamed desktopEnvConfig; };
+    conf = (import ./conf.nix) { inherit themeNamed inputConfig; };
+    style = (import ./style.nix) { inherit themeNamed inputConfig; };
   in {
     config = {
       xdg.configFile."waybar/config" = {

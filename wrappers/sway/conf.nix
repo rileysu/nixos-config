@@ -1,9 +1,9 @@
-{ userSettings, systemSettings, themeNamed, desktopEnvConfig }:
+{ themeNamed, inputConfig }:
 let
-    wallpaperPath = ../../wallpapers/${userSettings.wallpaper};
+    wallpaperPath = ../../wallpapers/${inputConfig.theme.wallpaper};
 
     volumeModule =
-        if desktopEnvConfig.windowManager.volume.enabled
+        if inputConfig.windowManager.volume.enabled
         then
             ''
                 # Special Volume
@@ -15,7 +15,7 @@ let
         else "";
 
     brightnessModule =
-        if desktopEnvConfig.windowManager.brightness.enabled
+        if inputConfig.windowManager.brightness.enabled
         then
             ''
                 # Special Brightness
@@ -25,11 +25,11 @@ let
         else "";
     
     cursorModule = 
-        if desktopEnvConfig.windowManager.cursor.enabled
+        if inputConfig.windowManager.cursor.enabled
         then
             ''
                 #Set Cursor
-                seat seat0 xcursor_theme ${desktopEnvConfig.windowManager.cursor.themeName} ${builtins.toString desktopEnvConfig.windowManager.cursor.size}
+                seat seat0 xcursor_theme ${inputConfig.windowManager.cursor.themeName} ${builtins.toString inputConfig.windowManager.cursor.size}
             ''
         else "";
 in

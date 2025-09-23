@@ -1,4 +1,4 @@
-{ userSettings, systemSettings, theme }:
+{ theme, inputConfig }:
 ''
 # Output
 monitor = , preferred, auto, 1

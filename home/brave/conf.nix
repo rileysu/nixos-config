@@ -1,4 +1,4 @@
-{ userSettings, systemSettings, themeNamed, desktopEnvConfig }:
+{ themeNamed, inputConfig }:
 ''
   --ozone-platform-hint=auto
 ''

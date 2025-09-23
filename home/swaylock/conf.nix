@@ -1,4 +1,4 @@
-{ userSettings, systemSettings, themeNamed, desktopEnvConfig }:
+{ themeNamed, inputConfig }:
 ''
 color=${themeNamed.background}
 bs-hl-color=${themeNamed.purple}

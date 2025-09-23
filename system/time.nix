@@ -1,7 +1,7 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }:
+{ config, lib, pkgs, inputConfig, ... }:
 
 {
   config = {
-    time.timeZone = systemSettings.timezone;
+    time.timeZone = inputConfig.time.timezone;
   };
 }

@@ -1,7 +1,7 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }:
+{ config, lib, pkgs, inputConfig, ... }:
 let
   themeUtilities = (import ../themes/utilities.nix);
-  theme = themeUtilities.getTheme { inherit userSettings; };
+  theme = themeUtilities.getTheme { theme = inputConfig.theme.name; };
   themeANSI = themeUtilities.toANSI { inherit theme; };
 in
 {

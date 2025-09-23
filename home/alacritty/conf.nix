@@ -1,4 +1,4 @@
-{ userSettings, systemSettings, theme, desktopEnvConfig }:
+{ theme, inputConfig }:
 ''
 [font]
 normal.family = "MonaspiceNe Nerd Font"

@@ -1,12 +1,9 @@
-{ config, lib, pkgs, userSettings, systemSettings, ... }: 
+{ config, lib, pkgs, inputConfig, ... }: 
   let
     themeUtilities = (import ../../themes/utilities.nix);
-    theme = themeUtilities.getTheme { inherit userSettings; };
+    theme = themeUtilities.getTheme { theme = inputConfig.theme.name; };
 
-    desktopEnvUtilities = import ../../desktop-envs/utilities.nix;
-    desktopEnvConfig = desktopEnvUtilities.getDesktopEnvConfig { profile = systemSettings.desktopEnvProfile; };
-
-    conf = pkgs.writeText "config.toml" ((import ./conf.nix) { inherit userSettings systemSettings theme desktopEnvConfig; });
+    conf = pkgs.writeText "config.toml" ((import ./conf.nix) { inherit theme inputConfig; });
   in {
     config = {
       wrappers.i3status-rust = {
