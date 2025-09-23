@@ -26,6 +26,11 @@
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
+    {
+      package = "btop";
+      systemModulePathSuffix = null;
+      homeModulePathSuffix = null;
+    }
   ];
 
   wrapped = [];
