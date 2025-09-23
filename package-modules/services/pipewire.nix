@@ -1,7 +1,7 @@
 {
   system = [
     {
-      packageID = "pipewire";
+      package = "pipewire";
       systemModulePathSuffix = "/service/pipewire.nix";
       homeModulePathSuffix = null;
     }

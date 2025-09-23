@@ -1,51 +1,50 @@
 let
-  fontBase = import ../fonts.nix;
+  fontBase = import ../../fonts.nix;
 in
 {
   system = [
-    # WM + WM Apps
     {
-      packageID = "sway";
+      package = "sway";
       systemModulePathSuffix = "/window-managers/sway.nix";
       homeModulePathSuffix = "/sway/default.nix";
     }
     {
-      packageID = "waybar";
+      package = "waybar";
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/waybar/default.nix";
     }
     {
-      packageID = "i3status-rust";
+      package = "i3status-rust";
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/i3status-rust/default.nix";
     }
     {
-      packageID = "mako";
+      package = "mako";
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/mako/default.nix";
     }
     {
-      packageID = "swaylock";
+      package = "swaylock";
       systemModulePathSuffix = "/swaylock.nix";
       homeModulePathSuffix = "/swaylock/default.nix";
     }
     {
-      packageID = "slurp";
+      package = "slurp";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
     {
-      packageID = "grim";
+      package = "grim";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
     {
-      packageID = "wl-clipboard";
+      package = "wl-clipboard";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
     {
-      packageID = "bibata-cursors";
+      package = "bibata-cursors";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
@@ -53,7 +52,7 @@ in
 
   wrapped = [
     {
-      packageID = "bemenu";
+      package = "bemenu";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

@@ -2,27 +2,27 @@
   system = [
     # Utilities
     {
-      packageID = "openssh";
+      package = "openssh";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
     {
-      packageID = "git";
+      package = "git";
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/git/default.nix";
     }
     {
-      packageID = "curl";
+      package = "curl";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
     {
-      packageID = "fastfetch";
+      package = "fastfetch";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
     {
-      packageID = "caligula";
+      package = "caligula";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

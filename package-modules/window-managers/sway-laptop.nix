@@ -1,10 +1,9 @@
 let
-  base = import ./sway-base.nix;
+  base = import ./bases/sway-base.nix;
 in {
   system = base.system ++ [
-    # WM + WM Apps
     {
-      packageID = "brightnessctl";
+      package = "brightnessctl";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

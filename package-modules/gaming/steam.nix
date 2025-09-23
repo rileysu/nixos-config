@@ -1,7 +1,7 @@
 {
   system = [
     {
-      packageID = "steam";
+      package = "steam";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

@@ -1,8 +1,7 @@
 {
   system = [
-    # Apps
     {
-      packageID = "brave";
+      package = "brave";
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/brave/default.nix";
     }

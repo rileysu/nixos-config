@@ -2,12 +2,12 @@
   system = [
     # Greeter
     {
-      packageID = "greetd";
+      package = "greetd";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
     {
-      packageID = "tuigreet";
+      package = "tuigreet";
       systemModulePathSuffix = "/greeters/tuigreet.nix";
       homeModulePathSuffix = null;
     }

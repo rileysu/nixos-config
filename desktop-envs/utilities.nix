@@ -47,7 +47,7 @@ rec {
           enabled = false;
 
           defaultCommand = null;
-          integrated = false;
+          integrated = true;
 
           sound.enabled = false;
           brightness.enabled = false;

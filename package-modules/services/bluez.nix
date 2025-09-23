@@ -1,7 +1,7 @@
 {
   system = [
     {
-      packageID = "bluez";
+      package = "bluez";
       systemModulePathSuffix = "/service/bluez.nix";
       homeModulePathSuffix = null;
     }

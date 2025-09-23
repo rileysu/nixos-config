@@ -1,13 +1,12 @@
 {
   system = [
-    # Utilities
     {
-      packageID = "nushell";
+      package = "nushell";
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/nushell/default.nix";
     }
     {
-      packageID = "carapace";
+      package = "carapace";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

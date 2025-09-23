@@ -1,8 +1,7 @@
 {
   system = [
-    # Utilities
     {
-      packageID = "gcc";
+      package = "gcc";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

@@ -2,7 +2,7 @@
   system = [
     # Apps
     {
-      packageID = "alacritty";
+      package = "alacritty";
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/alacritty/default.nix";
     }

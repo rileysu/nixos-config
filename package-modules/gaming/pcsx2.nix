@@ -1,8 +1,7 @@
 {
   system = [
-    # Utilities
     {
-      package = "doas";
+      package = "pcsx2";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

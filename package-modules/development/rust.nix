@@ -1,8 +1,7 @@
 {
   system = [
-    # Utilities
     {
-      package = "doas";
+      package = "rust-bin.stable.latest.default";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

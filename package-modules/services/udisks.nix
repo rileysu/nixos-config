@@ -1,9 +1,8 @@
 {
   system = [
-    # Utilities
     {
-      package = "doas";
-      systemModulePathSuffix = null;
+      package = "udisks2";
+      systemModulePathSuffix = "/service/udisks.nix";
       homeModulePathSuffix = null;
     }
   ];

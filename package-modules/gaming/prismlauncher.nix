@@ -1,7 +1,7 @@
 {
   system = [
     {
-      packageID = "prismlauncher";
+      package = "prismlauncher";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

@@ -1,7 +1,7 @@
 {
   system = [
     {
-      packageID = "neovim";
+      package = "vscode";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

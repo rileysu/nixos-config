@@ -5,12 +5,12 @@
 
   font = [
     {
-      packageID = "nerd-fonts.monaspace";
+      package = "nerd-fonts.monaspace";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
     {
-      packageID = "roboto-mono";
+      package = "roboto-mono";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }

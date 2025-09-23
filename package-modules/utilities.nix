@@ -12,21 +12,22 @@ rec {
 
   genPackage = { pkgs, path }:
     let
+      # Could replace with lib.splitString
       parts = builtins.filter (x: builtins.isString x) (builtins.split "\\." path);
     in
     builtins.foldl' (set: key: builtins.getAttr key set) pkgs parts;
 
   genSystemPackages = { pkgs, packageModule }: 
-    builtins.map (x: genPackage { inherit pkgs; path = x.packageID; }) packageModule.system;
+    builtins.map (x: genPackage { inherit pkgs; path = x.package; }) packageModule.system;
 
   genWrappedPackages = { pkgs, packageModule }: 
-    builtins.map (x: genPackage { inherit pkgs; path = x.packageID; }) packageModule.wrapped;
+    builtins.map (x: genPackage { inherit pkgs; path = x.package; }) packageModule.wrapped;
 
   genFontPackages = { pkgs, packageModule }: 
-    builtins.map (x: genPackage { inherit pkgs; path = x.packageID; }) packageModule.font;
+    builtins.map (x: genPackage { inherit pkgs; path = x.package; }) packageModule.font;
 
   genFlatpakPackages = { pkgs, packageModule }: 
-    builtins.map (x: x.packageID) packageModule.flatpak;
+    builtins.map (x: x.package) packageModule.flatpak;
 
   genModulePaths = { prefix, packageModule, attr }: 
     builtins.map 

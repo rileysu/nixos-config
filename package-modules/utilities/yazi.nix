@@ -2,7 +2,7 @@
   system = [
     # Utilities
     {
-      packageID = "yazi";
+      package = "yazi";
       systemModulePathSuffix = null;
       homeModulePathSuffix = "/yazi/default.nix";
     }

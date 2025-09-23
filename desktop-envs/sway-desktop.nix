@@ -1,58 +1,18 @@
 { lib, pkgs, userSettings, systemSettings }:
+let 
+  utilities = import ./utilities.nix;
+
+  base = (import ./bases/sway-base.nix) { inherit lib pkgs userSettings systemSettings; };
+in
+utilities.deepMerge base
 {
   name = "Sway Desktop";
   
   config = {
-    packageModuleIDs = [
-    "greeters/tuigreet"
-
-    "window-managers/sway-desktop"
-    "services/pipewire"
-    
-    "shells/nushell"
-    "editors/neovim"
-    "terminals/alacritty"
-
-    "general-cli-apps"
-
-    "utilities/yazi"
-
-    "browsers/brave"
-    "development/gcc"
-    "gaming/steam"
-    "gaming/prismlauncher"
-    ];
-
-    greeter = {
-      launchCommand = "sway";
-    };
-
-    shell = {
-      defaultCommand = "nu";
-    };
-
-    editor = {
-      defaultCommand = "nvim";
-    };
-
-    terminal = {
-      defaultCommand = "alacritty";
-    };
+    packageModuleIDs = [];
 
     windowManager = {
       volume.enabled = true; 
-      brightness.enabled = false;
-
-      chooser = {
-        defaultCommand = "bemenu";
-        defaultRunCommand = "bemenu-run";
-      };
-
-      notificationDaemon = {
-        enabled = true;        
-
-        defaultCommand = "mako";
-      };
 
       bar = {
         enabled = true;
@@ -61,26 +21,7 @@
         integrated = false;
 
         sound.enabled = true;
-        brightness.enabled = false;
-        battery.enabled = false;
       };
-
-
-      cursor = {
-        enabled = true;
-        
-        themeName = "Bibata-Modern-Ice";
-        size = 22;
-      };
-
-      displays = [
-        #{
-        #  identifier = null;
-        #  mode = null;
-        #  allowTearing = false;
-        #}
-      ];
     };
-
-      };
+  };
 }

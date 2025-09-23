@@ -45,6 +45,8 @@
 
         wrapper-manager = inputs.wrapper-manager;
 
+        rust-overlay = inputs.rust-overlay;
+
     in {
         nixosConfigurations = {
             ${systemSettings.hostname} = lib.nixosSystem {
@@ -57,6 +59,9 @@
                 };
                 modules = [
                     nix-flatpak.nixosModules.nix-flatpak
+                    ({ pkgs, ... }: {
+                        nixpkgs.overlays = [ rust-overlay.overlays.default ];
+                    })
                     (./. + "/profiles/linux/configuration.nix")
                     (./. + "/system-profiles" + ("/" + systemSettings.systemProfile) + "/hardware-configuration.nix")
                     home-manager.nixosModules.home-manager {
@@ -85,5 +90,10 @@
         nix-flatpak.url = "github:gmodena/nix-flatpak?ref=latest";
 
         wrapper-manager.url = "github:viperML/wrapper-manager";
+
+        rust-overlay = {
+            url = "github:oxalica/rust-overlay";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 }
