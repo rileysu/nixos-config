@@ -262,7 +262,7 @@ mode "$mode_exit" {
     bindsym s exec systemctl suspend && $lock_command, mode "default"
     bindsym h exec systemctl hibernate && $lock_command, mode "default"
     bindsym r exec systemctl reboot, mode "default"
-    bindsym Shift+s exec systemctl shutdown, mode "default"
+    bindsym Shift+s exec systemctl poweroff, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
