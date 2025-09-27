@@ -1,7 +1,7 @@
 let
   utilities = import ./../utilities.nix;
 
-  desktop = (import ./../desktops/sway-desktop.nix); 
+  desktop = (import ./../desktops/sway-laptop.nix); 
 in
 builtins.foldl' utilities.deepMerge
   {}

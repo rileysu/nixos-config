@@ -1,15 +1,19 @@
+let
+  fontBase = import ../../fonts.nix;
+in
 {
-  system = [
+  system = [];
+
+  wrapped = [
     {
-      package = "rustup";
+      package = "bemenu";
       systemModulePathSuffix = null;
       homeModulePathSuffix = null;
     }
   ];
 
-  wrapped = [];
-
   font = [];
 
   flatpak = [];
 }
+

@@ -14,7 +14,7 @@
 
         wrapper-manager = inputs.wrapper-manager;
 
-        rust-overlay = inputs.rust-overlay;
+        #rust-overlay = inputs.rust-overlay;
 
     in {
         nixosConfigurations = {
@@ -28,7 +28,7 @@
                 modules = [
                     nix-flatpak.nixosModules.nix-flatpak
                     ({ pkgs, ... }: {
-                        nixpkgs.overlays = [ rust-overlay.overlays.default ];
+                        #nixpkgs.overlays = [ rust-overlay.overlays.default ];
                     })
                     (./. + "/profiles/linux/configuration.nix")
                     (./. + "/hardware" + ("/" + inputConfig.system.hardware) + "/hardware-configuration.nix")
@@ -58,9 +58,9 @@
 
         wrapper-manager.url = "github:viperML/wrapper-manager";
 
-        rust-overlay = {
-            url = "github:oxalica/rust-overlay";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+        #rust-overlay = {
+        #    url = "github:oxalica/rust-overlay";
+        #    inputs.nixpkgs.follows = "nixpkgs";
+        #};
     };
 }
