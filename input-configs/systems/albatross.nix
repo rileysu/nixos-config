@@ -25,7 +25,7 @@ builtins.foldl' utilities.deepMerge
 
       theme = {
         name = "catppuccin_mocha";
-        wallpaper = "storm.jpg";
+        wallpaper = "bars.jpg";
       };
 
       user = {
