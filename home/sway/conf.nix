@@ -150,6 +150,9 @@ gaps inner 8
 
 ## Theme ##
 
+# Opacity Windows
+# for_window [class="Code"] opacity set 0.8
+
 # Colors
 client.focused          #${themeNamed.yellow} #${themeNamed.background} #${themeNamed.foreground} #${themeNamed.yellow} #${themeNamed.yellow}
 client.focused_inactive #${themeNamed.foreground} #${themeNamed.background} #${themeNamed.foreground} #${themeNamed.foreground} #${themeNamed.foreground}

@@ -70,15 +70,15 @@ window#waybar.hidden {
 
 #workspaces button:hover {
     background: none;
-    background-color: #${themeNamed.foreground}; 
-    color: #${themeNamed.background};
-    border: 1px solid #${themeNamed.foreground};
-}
-
-#workspaces button.focused {
     background-color: #${themeNamed.surface2}; 
     color: #${themeNamed.foreground};
     border: 1px solid #${themeNamed.surface2};
+}
+
+#workspaces button.focused {
+    background-color: #${themeNamed.foreground}; 
+    color: #${themeNamed.background};
+    border: 1px solid #${themeNamed.foreground};
 }
 
 #workspaces button.urgent {

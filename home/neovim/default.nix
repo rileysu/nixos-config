@@ -7,6 +7,7 @@
     conf = (import ./conf.nix) { inherit themeNamed inputConfig; };
 
     colorschemeModuleConf = (import ./modules/colorscheme.nix) { inherit themeNamed inputConfig; };
+    treesitterModuleConf = (import ./modules/treesitter.nix) { inherit themeNamed inputConfig; };
     uiModuleConf = (import ./modules/ui.nix) { inherit themeNamed inputConfig; };
   in {
     config = {
@@ -21,6 +22,10 @@
 
       xdg.configFile."nvim/lua/plugins/colorscheme.lua" = {
         text = colorschemeModuleConf;
+      };
+
+      xdg.configFile."nvim/lua/plugins/treesitter.lua" = {
+        text = treesitterModuleConf;
       };
 
       xdg.configFile."nvim/lua/plugins/ui.lua" = {
