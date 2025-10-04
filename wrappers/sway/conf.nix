@@ -1,9 +1,9 @@
-{ themeNamed, inputConfig }:
+{ themeNamed, config }:
 let
-    wallpaperPath = ../../wallpapers/${inputConfig.theme.wallpaper};
+    wallpaperPath = ../../wallpapers/${config.metaConfig.theme.wallpaper};
 
     volumeModule =
-        if inputConfig.windowManager.volume.enabled
+        if config.metaConfig.windowManager.volume.enabled
         then
             ''
                 # Special Volume
@@ -15,7 +15,7 @@ let
         else "";
 
     brightnessModule =
-        if inputConfig.windowManager.brightness.enabled
+        if config.metaConfig.windowManager.brightness.enabled
         then
             ''
                 # Special Brightness
@@ -25,11 +25,11 @@ let
         else "";
     
     cursorModule = 
-        if inputConfig.windowManager.cursor.enabled
+        if config.metaConfig.windowManager.cursor.enabled
         then
             ''
                 #Set Cursor
-                seat seat0 xcursor_theme ${inputConfig.windowManager.cursor.themeName} ${builtins.toString inputConfig.windowManager.cursor.size}
+                seat seat0 xcursor_theme ${config.metaConfig.windowManager.cursor.themeName} ${builtins.toString config.metaConfig.windowManager.cursor.size}
             ''
         else "";
 in

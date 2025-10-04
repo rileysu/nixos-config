@@ -1,12 +1,16 @@
-{ config, lib, pkgs, inputConfig, wrapper-manager, ... }:
+{ config, lib, pkgs, metaConfigProfile, wrapper-manager, ... }:
 
 let
+  metaConfigUtilities = (import ../../meta-configs/utilities.nix);
+  metaConfigOptions = metaConfigUtilities.getOptions { inherit lib; };
+  metaConfig = metaConfigUtilities.importProfile { profile = metaConfigProfile; };
+
   packageModuleUtilities = (import ../../package-modules/utilities.nix);
   wrapperUtilities = (import ../../wrappers/utilities.nix);
 
-  wrapperPkgs = wrapperUtilities.genWrapperPkgs { inherit wrapper-manager; inherit pkgs; inherit inputConfig; };
+  wrapperPkgs = wrapperUtilities.genWrapperPkgs { inherit wrapper-manager; inherit pkgs; inherit metaConfigProfile; };
 
-  packageModuleIDs = inputConfig.packageModuleIDs;
+  packageModuleIDs = metaConfig.packageModuleIDs;
 
   packageModule = packageModuleUtilities.combinePackageModules { packageModules = packageModuleUtilities.getPackageModules { inherit packageModuleIDs; }; };
 
@@ -27,7 +31,13 @@ in
     ../../system/user.nix
   ];
 
+  options = {
+    metaConfig = metaConfigOptions;
+  };
+
   config = {
+    inherit metaConfig;
+
     nixpkgs.config.allowUnfree = true;
 
     boot.loader.systemd-boot.enable = true;

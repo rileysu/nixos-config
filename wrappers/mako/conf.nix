@@ -1,4 +1,4 @@
-{ themeNamed, inputConfig }:
+{ themeNamed, config }:
 ''
 max-visible=8
 sort=-time

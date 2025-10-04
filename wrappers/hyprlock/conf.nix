@@ -1,4 +1,4 @@
-{ theme, inputConfig }:
+{ theme, config }:
 ''
 animations {
     enabled = true

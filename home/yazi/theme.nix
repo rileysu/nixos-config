@@ -1,5 +1,5 @@
 #https://github.com/yazi-rs/flavors/blob/main/catppuccin-mocha.yazi/flavor.toml
-{ themeNamed, inputConfig }:
+{ themeNamed, config }:
 ''
   [mgr]
   cwd = { fg = "#${themeNamed.aqua}" }

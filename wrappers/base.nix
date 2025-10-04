@@ -1,4 +1,10 @@
-{ config, lib, pkgs, inputConfig, ... }: {
+{ config, lib, pkgs, metaConfigProfile, ... }: 
+let
+  metaConfigUtilities = (import ../meta-configs/utilities.nix);
+  metaConfigOptions = metaConfigUtilities.getOptions { inherit lib; };
+  metaConfig = metaConfigUtilities.importProfile { profile = metaConfigProfile; };
+in
+{
   imports = [
     ./alacritty/default.nix
     ./bemenu/default.nix
@@ -13,4 +19,12 @@
     ./sway/default.nix
     ./swaylock/default.nix
   ];
+
+  options = {
+    metaConfig = metaConfigOptions;
+  };
+
+  config = {
+    inherit metaConfig;
+  };
 }

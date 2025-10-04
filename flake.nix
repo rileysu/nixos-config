@@ -3,8 +3,9 @@
 
     outputs = inputs@{ self, ... }:
     let
-        inputConfigUtilities = import ./input-configs/utilities.nix;
-        inputConfig = inputConfigUtilities.importProfile { profile = "systems/ox"; };
+        metaConfigProfile = "systems/ox";
+        metaConfigUtilities = import ./meta-configs/utilities.nix;
+        metaConfig = metaConfigUtilities.importProfile { profile = metaConfigProfile; };
  
         lib = inputs.nixpkgs.lib;
 
@@ -18,10 +19,10 @@
 
     in {
         nixosConfigurations = {
-            ${inputConfig.system.hostname} = lib.nixosSystem {
-                system = inputConfig.system.target;
+            ${metaConfig.system.hostname} = lib.nixosSystem {
+                system = metaConfig.system.target;
                 specialArgs = {
-                    inherit inputConfig;
+                    inherit metaConfigProfile;
                     inherit inputs;
                     inherit wrapper-manager;
                 };
@@ -31,13 +32,13 @@
                         #nixpkgs.overlays = [ rust-overlay.overlays.default ];
                     })
                     (./. + "/profiles/linux/configuration.nix")
-                    (./. + "/hardware" + ("/" + inputConfig.system.hardware) + "/hardware-configuration.nix")
+                    (./. + "/hardware" + ("/" + metaConfig.system.hardware) + "/hardware-configuration.nix")
                     home-manager.nixosModules.home-manager {
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
-                        home-manager.users.${inputConfig.user.username} = (./. + "/profiles/linux/home.nix");
+                        home-manager.users.${metaConfig.user.username} = (./. + "/profiles/linux/home.nix");
                         home-manager.extraSpecialArgs = {
-                            inherit inputConfig;
+                            inherit metaConfigProfile;
                             inherit inputs;
                         };
                     }

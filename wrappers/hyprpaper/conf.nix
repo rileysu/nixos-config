@@ -1,4 +1,4 @@
-{ theme, inputConfig }:
+{ theme, config }:
 ''
-wallpaper = , ~/.wallpapers/${inputConfig.theme.wallpaper}
+wallpaper = , ~/.wallpapers/${config.metaConfig.theme.wallpaper}
 ''

@@ -1,8 +1,8 @@
-{ config, lib, pkgs, inputConfig, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   config = {
-    users.users.${inputConfig.user.username} = {
+    users.users.${config.metaConfig.user.username} = {
       isNormalUser = true;
       extraGroups = [ "wheel" ];
       packages = with pkgs; [];

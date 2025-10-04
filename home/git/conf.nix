@@ -1,6 +1,6 @@
-{ themeNamed, inputConfig }:
+{ themeNamed, config }:
 ''
 [user]
-    email = ${inputConfig.user.email}
-    name = ${inputConfig.user.name}
+    email = ${config.metaConfig.user.email}
+    name = ${config.metaConfig.user.name}
 ''

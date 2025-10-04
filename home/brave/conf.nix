@@ -1,4 +1,4 @@
-{ themeNamed, inputConfig }:
+{ themeNamed, config }:
 ''
   --ozone-platform-hint=auto
 ''

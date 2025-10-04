@@ -1,7 +1,7 @@
-{ config, lib, pkgs, inputConfig, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   config = {
-    time.timeZone = inputConfig.time.timezone;
+    time.timeZone = config.metaConfig.time.timezone;
   };
 }

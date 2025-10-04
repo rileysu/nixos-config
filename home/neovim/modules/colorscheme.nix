@@ -1,4 +1,4 @@
-{ themeNamed, inputConfig }:
+{ themeNamed, config }:
 ''
 return {
   {

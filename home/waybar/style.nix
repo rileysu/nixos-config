@@ -1,4 +1,4 @@
-{ themeNamed, inputConfig }:
+{ themeNamed, config }:
 ''
 * {
     font-family: "Roboto Mono", monospace;

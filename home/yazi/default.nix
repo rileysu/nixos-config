@@ -1,12 +1,12 @@
-{ config, lib, pkgs, inputConfig, ... }: 
+{ config, lib, pkgs, ... }: 
   let
     themeUtilities = (import ../../themes/utilities.nix);
-    theme = themeUtilities.getTheme { theme = inputConfig.theme.name; };
+    theme = themeUtilities.getTheme { theme = config.metaConfig.theme.name; };
     themeNamed = themeUtilities.toNamed { inherit theme; };
 
-    mainConf = (import ./conf.nix) { inherit themeNamed inputConfig; };
-    keymapConf = (import ./keymap.nix) { inherit themeNamed inputConfig; };
-    themeConf = (import ./theme.nix) { inherit themeNamed inputConfig; };
+    mainConf = (import ./conf.nix) { inherit themeNamed config; };
+    keymapConf = (import ./keymap.nix) { inherit themeNamed config; };
+    themeConf = (import ./theme.nix) { inherit themeNamed config; };
   in {
     config = {
       xdg.configFile."yazi/yazi.toml" = {

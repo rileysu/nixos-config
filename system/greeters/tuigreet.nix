@@ -1,9 +1,9 @@
-{ config, lib, pkgs, inputConfig, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   tuigreetPath = "${pkgs.tuigreet}/bin/tuigreet";
 
-  launchSuffix = if inputConfig.greeter.launchCommand != null then "--cmd ${inputConfig.greeter.launchCommand}" else "";
+  launchSuffix = if config.metaConfig.greeter.launchCommand != null then "--cmd ${config.metaConfig.greeter.launchCommand}" else "";
 in
 {
   config = {

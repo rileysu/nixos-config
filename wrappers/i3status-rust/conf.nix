@@ -1,7 +1,7 @@
-{ theme, inputConfig }:
+{ theme, config }:
 let
   batteryModule =
-    if inputConfig.bar.battery.enabled
+    if config.metaConfig.bar.battery.enabled
     then
       ''
         [[block]]
@@ -17,7 +17,7 @@ let
     else "";
 
   brightnessModule =
-    if inputConfig.bar.brightness.enabled
+    if config.metaConfig.bar.brightness.enabled
     then
       ''
         [[block]]
@@ -27,7 +27,7 @@ let
     else "";
 
   volumeModule = 
-    if inputConfig.bar.sound.enabled
+    if config.metaConfig.bar.sound.enabled
     then
       ''
         [[block]]

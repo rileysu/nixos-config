@@ -1,7 +1,7 @@
 # Ref
 # https://github.com/breuerfelix/feovim/blob/main/flake.nix
 # https://breuer.dev/blog/nix-lazy-neovim
-{ pkgs, themeNamed, inputConfig }:
+{ pkgs, themeNamed, config }:
 let
   lazyPlugins = [
     ./colorscheme.nix

@@ -1,4 +1,4 @@
-{ theme, inputConfig }:
+{ theme, config }:
 ''
 [font]
 normal.family = "MonaspiceNe Nerd Font"

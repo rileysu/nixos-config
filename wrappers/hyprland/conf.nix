@@ -1,4 +1,4 @@
-{ theme, inputConfig }:
+{ theme, config }:
 ''
 # Output
 monitor = , preferred, auto, 1

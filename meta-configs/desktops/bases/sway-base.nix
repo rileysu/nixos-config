@@ -16,6 +16,7 @@
     "general-cli-apps"
 
     "utilities/yazi"
+    "utilities/pavucontrol"
 
     "development/gcc"
     "development/nix"

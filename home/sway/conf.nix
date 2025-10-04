@@ -1,15 +1,15 @@
-{ themeNamed, inputConfig }:
+{ themeNamed, config }:
 let
     notificationDaemonModule = 
-      if inputConfig.windowManager.notificationDaemon.enabled
-      then "exec ${inputConfig.windowManager.notificationDaemon.defaultCommand}"
+      if config.metaConfig.windowManager.notificationDaemon.enabled
+      then "exec ${config.metaConfig.windowManager.notificationDaemon.defaultCommand}"
       else "";
 
     barModule =
-      if inputConfig.windowManager.bar.enabled
+      if config.metaConfig.windowManager.bar.enabled
       then 
-        if !inputConfig.windowManager.bar.integrated
-        then "exec ${inputConfig.windowManager.bar.defaultCommand}"
+        if !config.metaConfig.windowManager.bar.integrated
+        then "exec ${config.metaConfig.windowManager.bar.defaultCommand}"
         else 
         ''
           bar {
@@ -40,12 +40,12 @@ let
         ''
           output "${display.identifier}" mode ${display.mode}Hz allow_tearing ${if display.allowTearing then "yes" else "no"}
         '')
-      inputConfig.windowManager.displays);
+      config.metaConfig.windowManager.displays);
 
-    wallpaperPath = ../../wallpapers/${inputConfig.theme.wallpaper};
+    wallpaperPath = ../../wallpapers/${config.metaConfig.theme.wallpaper};
 
     volumeModule =
-        if inputConfig.windowManager.volume.enabled
+        if config.metaConfig.windowManager.volume.enabled
         then
             ''
                 # Special Volume
@@ -57,7 +57,7 @@ let
         else "";
 
     brightnessModule =
-        if inputConfig.windowManager.brightness.enabled
+        if config.metaConfig.windowManager.brightness.enabled
         then
             ''
                 # Special Brightness
@@ -67,26 +67,26 @@ let
         else "";
 
     volumeAndBrightnessModeModule =
-        if inputConfig.windowManager.volume.enabled || inputConfig.windowManager.brightness.enabled
+        if config.metaConfig.windowManager.volume.enabled || config.metaConfig.windowManager.brightness.enabled
         then
           let
-            volumeSub = if inputConfig.windowManager.volume.enabled then
+            volumeSub = if config.metaConfig.windowManager.volume.enabled then
             ''
                 bindsym h exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
                 bindsym l exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
                 bindsym m exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
                 bindsym Shift+m exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle 
             '' else "";
-            volumeDescSub = if inputConfig.windowManager.volume.enabled 
+            volumeDescSub = if config.metaConfig.windowManager.volume.enabled 
               then " (h) volume -, (l) volume +, (m) mute out, (Shift+m) mute in"
               else "";
 
-            brightnessSub = if inputConfig.windowManager.brightness.enabled then
+            brightnessSub = if config.metaConfig.windowManager.brightness.enabled then
             ''
                 bindsym j exec brightnessctl set 5%-
                 bindsym k exec brightnessctl set 5%+
             '' else "";
-            brightnessDescSub = if inputConfig.windowManager.brightness.enabled
+            brightnessDescSub = if config.metaConfig.windowManager.brightness.enabled
               then " (j) birghtness -, (k) brightness +"
               else "";
           in
@@ -105,11 +105,11 @@ let
           '' else "";
     
     cursorModule = 
-        if inputConfig.windowManager.cursor.enabled
+        if config.metaConfig.windowManager.cursor.enabled
         then
             ''
                 #Set Cursor
-                seat seat0 xcursor_theme ${inputConfig.windowManager.cursor.themeName} ${builtins.toString inputConfig.windowManager.cursor.size}
+                seat seat0 xcursor_theme ${config.metaConfig.windowManager.cursor.themeName} ${builtins.toString config.metaConfig.windowManager.cursor.size}
             ''
         else "";
 in

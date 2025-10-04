@@ -1,8 +1,8 @@
-{ config, lib, pkgs, inputConfig, ... }: 
+{ config, lib, pkgs, ... }: 
   let
     defaultEditorLine = 
-      if inputConfig.editor.defaultCommand != null 
-        then "$env.config.buffer_editor = ${inputConfig.editor.defaultCommand}" 
+      if config.metaConfig.editor.defaultCommand != null 
+        then "$env.config.buffer_editor = ${config.metaConfig.editor.defaultCommand}" 
         else "";
         
     conf = pkgs.writeText "config.nu" 

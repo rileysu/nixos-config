@@ -6,7 +6,7 @@
 #
 # This is the only working example I found with wrappers: https://github.com/viperML/dotfiles/blob/master/modules/wrapper-manager/fish/fish-on-tmpfs.patch
 # They had to patch fish because of the same issue I ran into I assume.
-{ config, lib, pkgs, inputConfig, ... }: 
+{ config, lib, pkgs, ... }: 
   let
     conf = pkgs.writeText "config.fish" 
     ''

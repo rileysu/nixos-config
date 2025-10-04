@@ -1,4 +1,4 @@
-{ themeNamed, inputConfig }:
+{ themeNamed, config }:
 ''
 color=${themeNamed.background}
 bs-hl-color=${themeNamed.purple}

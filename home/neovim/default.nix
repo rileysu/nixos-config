@@ -1,14 +1,14 @@
-{ config, lib, pkgs, inputConfig, ... }: 
+{ config, lib, pkgs, ... }: 
   let
     themeUtilities = (import ../../themes/utilities.nix);
-    theme = themeUtilities.getTheme { theme = inputConfig.theme.name; };
+    theme = themeUtilities.getTheme { theme = config.metaConfig.theme.name; };
     themeNamed = themeUtilities.toNamed { inherit theme; };
 
-    conf = (import ./conf.nix) { inherit themeNamed inputConfig; };
+    conf = (import ./conf.nix) { inherit themeNamed config; };
 
-    colorschemeModuleConf = (import ./modules/colorscheme.nix) { inherit themeNamed inputConfig; };
-    treesitterModuleConf = (import ./modules/treesitter.nix) { inherit themeNamed inputConfig; };
-    uiModuleConf = (import ./modules/ui.nix) { inherit themeNamed inputConfig; };
+    colorschemeModuleConf = (import ./modules/colorscheme.nix) { inherit themeNamed config; };
+    treesitterModuleConf = (import ./modules/treesitter.nix) { inherit themeNamed config; };
+    uiModuleConf = (import ./modules/ui.nix) { inherit themeNamed config; };
   in {
     config = {
       xdg.configFile."nvim/init.lua" = {

@@ -1,9 +1,13 @@
-{ config, lib, pkgs, inputConfig, ... }:
+{ config, lib, pkgs, metaConfigProfile, ... }:
 
 let 
+  metaConfigUtilities = (import ../../meta-configs/utilities.nix);
+  metaConfigOptions = metaConfigUtilities.getOptions { inherit lib; };
+  metaConfig = metaConfigUtilities.importProfile { profile = metaConfigProfile; };
+
   packageModuleUtilities = (import ../../package-modules/utilities.nix);
 
-  packageModuleIDs = inputConfig.packageModuleIDs;
+  packageModuleIDs = metaConfig.packageModuleIDs;
 
   packageModule = packageModuleUtilities.combinePackageModules { packageModules = packageModuleUtilities.getPackageModules { inherit packageModuleIDs; }; };
 
@@ -12,9 +16,15 @@ in
 {
   imports = packageModuleModulePaths ++ [];
 
+  options = {
+    metaConfig = metaConfigOptions;
+  };
+
   config = {
-    home.username = inputConfig.user.username;
-    home.homeDirectory = "/home/${inputConfig.user.username}";
+    inherit metaConfig;
+
+    home.username = metaConfig.user.username;
+    home.homeDirectory = "/home/${metaConfig.user.username}";
 
     home.stateVersion = "25.11";
   };
