@@ -1,7 +1,7 @@
 #!/usr/bin/env nu
 
 def installed_run [command: string, exec: closure] {
-    if (which $command | length) > 1 {
+    if (which $command | length) > 0 {
         do $exec
     } else {
         print $"($command) not installed!"
