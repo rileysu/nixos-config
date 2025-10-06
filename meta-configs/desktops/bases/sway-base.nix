@@ -4,9 +4,7 @@ let
   base = (import ./linux-graphical-base.nix);
 in
 utilities.deepMerge base {
-  packageModuleIDs = [
-    "window-managers/sway-desktop"
-  ];
+  packageModuleIDs = [ ];
 
   greeter = {
     launchCommand = "sway";

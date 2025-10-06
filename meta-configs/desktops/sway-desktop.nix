@@ -4,7 +4,9 @@ let
   base = (import ./bases/sway-base.nix);
 in
 utilities.deepMerge base {
-  packageModuleIDs = [ ];
+  packageModuleIDs = [ 
+    "window-managers/sway-desktop"
+  ];
 
   windowManager = {
     volume.enabled = true;
